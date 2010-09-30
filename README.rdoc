@@ -3,8 +3,8 @@
 == DESCRIPTION
 
 Executioner is a very striaght-forward CLI framework for Ruby. A single
-subclass of TieClass can define a complete multi-command command
-line tool, using Ruby's own method definitions.
+class can define a complete multi-command command line tool using nothing
+more than Ruby's own method definitions.
 
 
 == SYNOPSIS
@@ -15,7 +15,7 @@ method corresponds to a subcommand, an writer method (ending in '=') to an
 option and a query method (ending in '?') to a flag. For example, here is a
 simple commandline tool to run a Ruby script.
 
-    require 'executor'
+    require 'executioner'
 
     class RunCLI < Executioner
 
