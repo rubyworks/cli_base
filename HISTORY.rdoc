@@ -1,0 +1,20 @@
+= RELEASE HISTORY
+
+== 0.3.0 / 2010-09-12
+
+The most significant change is the use bang methods (foo!)
+for option flags instead to of query-methods (foo?).
+
+Changes:
+
+* Use bang methods for option flags.
+
+
+== 0.2.0 / 2010-03-02
+
+Initial release of TieClip, the clip-on tie of CLI frameworks
+for Ruby.
+
+Changes:
+
+* Happy Birthday!

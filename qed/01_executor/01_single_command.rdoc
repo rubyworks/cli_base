@@ -1,0 +1,47 @@
+= Scenario - No Subcommmands
+
+This example demonstrates using Executioner to create a simple command line
+interface without subcommands.
+
+  require 'executioner'
+
+  class NoSubCommandCLI < Executioner
+
+    attr :result
+
+    def o?
+      @o
+    end
+
+    def o=(flag)
+      @o = flag
+    end
+
+    def main
+      if o?
+        @result = "with"
+      else
+        @result = "without"
+      end
+    end
+
+  end
+
+Execute the CLI on an example command line.
+
+  cli = NoSubCommandCLI.new
+  cli.execute_command('')
+  cli.result.assert == 'without'
+
+Execute the CLI on an example command line.
+
+  cli = NoSubCommandCLI.new
+  cli.execute_command('-o')
+  cli.result.assert == 'with'
+
+There are two important things to notices heres. Frist, that #main is being
+called in each case. It is the method called with no other subcommands are
+defined. And second, the fact the a `o?` method is defined to compliment the
+`o=` writer, informs Executioner that `-o` is an option _flag_, not taking
+any parameters.
+

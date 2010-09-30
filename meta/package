@@ -1,0 +1,8 @@
+name    : execute
+date    : 2010-09-30
+version : 0.1.0
+
+requires:
+- syckle (build)
+- qed    (test)
+

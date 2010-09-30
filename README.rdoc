@@ -1,0 +1,65 @@
+= Executioner
+
+== DESCRIPTION
+
+Executioner is a very striaght-forward CLI framework for Ruby. A single
+subclass of TieClass can define a complete multi-command command
+line tool, using Ruby's own method definitions.
+
+
+== SYNOPSIS
+
+Using Executioner is straight-forward. Simply subclass the `Executioner` base
+class and add methods to handle subcommands and command-line options. A plan
+method corresponds to a subcommand, an writer method (ending in '=') to an
+option and a query method (ending in '?') to a flag. For example, here is a
+simple commandline tool to run a Ruby script.
+
+    require 'executor'
+
+    class RunCLI < Executioner
+
+      help "Require LIBRARY before executing your script"
+
+      def require=(lib)
+        require lib
+      end
+      alias :r= :require=
+
+      help "Include PATH in $LOAD_PATH"
+
+      def include=(path)
+        $:.unshift path
+      end
+      alias :I= :incude
+
+      help "Run in DEBUG mode"
+
+      def debug?
+        $DEBUG = true
+      end
+
+      help "Show this message"
+
+      def help?
+        puts self
+        exit
+      end
+      alias :h? :help?
+
+      def main(script)
+        load(script)
+      end
+    end
+
+For a more detail example see EXAMPLE.rdoc.
+
+
+== COPYRIGHT
+
+Copyright (c) 2009 Thomas Sawyer
+
+Executor is distributed under the terms of the Apache License v2.0.
+
+Please see LICENSE file for details.
+

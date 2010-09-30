@@ -1,0 +1,23 @@
+--- 
+title  : Executioner
+suite  : rubyworks
+summary: Killer Commandlines
+contact: Trans <transfire@gmail.com>
+license: Apache 2.0
+authors: Thomas Sawyer
+created: 2008-08-08
+
+description:
+  Executioner is an OCM (Object Command Mapper) CLI framework for Ruby.
+  A single subclass of the Executioner base class can define a complete
+  multi-command command line tool using nothing more than Ruby's own
+  method definitions.
+
+resources:
+  home: http://rubyworks.github.com/tieclip
+  code: http://github.com/rubyworks/tieclip
+  mail: http://groups.google.com/group/rubyworks-mailinglist
+
+copyright:
+  Copyright (c) 2008 Thomas Sawyer
+
