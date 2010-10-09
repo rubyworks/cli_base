@@ -1,6 +1,6 @@
 /* TAG STYLES */
 
-html { font-family: helvetica, sans-serif; font-size: 100%; }
+html { font-family: helvetica, sans-serif; font-size: 90%; }
 body { position: relative; color: #222233; background: #ffffff; }
 
   li { padding: 3px 0; font-size: 80%; line-height: 150%; }
@@ -56,12 +56,12 @@ body {
 
 /* #nav */
 
-#nav { padding: 0 10px 0 40px; text-align: left; }
+#nav { padding: 10px 10px 10px 0; text-align: left; }
 #nav ul { list-style-type: none; margin: 0px; padding: 0px; width: 100%; position: relative; }
-#nav ul li { margin: 0 1px 10px 0; line-height: 16px; white-space:nowrap; }
+#nav ul li { margin: 0 1px 5px 0; line-height: 16px; white-space:nowrap; float: left; padding: 0 24px 0 0; }
 #nav ul li a { border-top: 0 solid; }
 #nav { text-align: right; }
-#nav ul li a { font-family: monospace; font-weight: bold; text-decoration: none; font-size: 25px; }
+#nav ul li a { font-family: monospace; font-weight: bold; text-decoration: none; font-size: 200%; }
 #nav ul li a:hover { text-decoration: strike; color: #222; }
 #nav ul li a:active { text-decoration: underline; }
 #nav ul { background: transparent; }
@@ -90,7 +90,12 @@ body {
 #readme ol, ul { list-style: square; margin-left: 24px; }
 /* #footer */
 
-#footer { margin-top: 390px; padding: 0; background: white; }
+#iconograph {
+  height: 400px;
+  background: url(../../assets/images/samexe.jpg) center -500px no-repeat #eee;
+}
+
+#footer { margin-top: 0; padding: 0; background: white; }
 #footer .advert { border: 1px solid :eee; }
 #footer .copyright { margin: 0 0 0 1px; padding: 15px; font-size: 0.7em; color: #eee; font-weight: bold; background: #f40; }
 
