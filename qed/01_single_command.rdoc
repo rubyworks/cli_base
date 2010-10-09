@@ -29,14 +29,12 @@ interface without subcommands.
 
 Execute the CLI on an example command line.
 
-  cli = NoSubCommandCLI.new
-  cli.execute_command('')
+  cli = NoSubCommandCLI.run
   cli.result.assert == 'without'
 
 Execute the CLI on an example command line.
 
-  cli = NoSubCommandCLI.new
-  cli.execute_command('-o')
+  cli = NoSubCommandCLI.run('-o')
   cli.result.assert == 'with'
 
 There are two important things to notices heres. Frist, that #main is being

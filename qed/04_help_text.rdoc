@@ -1,0 +1,76 @@
+Require Executor library.
+
+  require 'executioner'
+
+Setup an example CLI subclass.
+
+  class MyCLI < Executioner
+
+    help "This is global option -g."
+
+    def g=(val)
+    end
+
+    # help "This does c1."
+
+    class C1 < self
+
+      description "This does c1."
+
+      help "This is option --o1 for c1."
+
+      def o1=(value)
+      end
+
+      help "This is option --o2 for c1."
+
+      def o2=(value)
+      end
+
+    end
+
+    # help "This does c2."
+
+    class C2 < self
+
+      help "This is option --o1 for c2."
+
+      def o1=(value)
+      end
+
+      help "This is option --o2 for c2."
+
+      def o2=(bool)
+      end
+
+    end
+
+  end
+
+The help output,
+
+  puts MyCLI::C1.help_text
+
+should be clearly laid out as follows:
+
+  qed
+
+  COMMANDS:
+
+    c1              This does c1.
+    c2              This does c2.
+
+  OPTIONS FOR c1:
+
+    --o1              This is option --o1 for c1.
+    --o2              This is option --o2 for c1.
+
+  OPTIONS FOR c2:
+
+    --o1              This is option --o1 for c2.
+    --o2              This is option --o2 for c2.
+
+  COMMON OPTIONS:
+
+     -g               This is global option -g.
+

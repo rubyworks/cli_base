@@ -14,10 +14,10 @@ This example mimics the one given in optparse.rb documentation.
 
       def initialize
         super
-        reset!
+        reset
       end
 
-      def reset!
+      def reset
         @options = OpenStruct.new
         @options.library = []
         @options.inplace = false
@@ -97,19 +97,20 @@ This example mimics the one given in optparse.rb documentation.
       help "Run verbosely"
 
       # Boolean switch.
-      def verbose!
-        options.verbose = true
+      def verbose=(bool)
+        options.verbose = bool)
       end
-      def no_verbose1
-        options.verbose = false
+      def verbose?
+        @options.verbose
       end
-      alias :v! :verbose!
+      alias :v= :verbose=
+      alias :v? :verbose?
 
       help "Show this message"
 
       # No argument, shows at tail.  This will print an options summary.
       def help!
-        puts self
+        puts help_text
         exit
       end
       alias :h! :help!

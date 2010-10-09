@@ -3,105 +3,106 @@
 #   class MyCLI < Executioner
 #
 #     # cmd --debug
-#     def debug!(bool)
+#
+#     def debug?
+#       $DEBUG
+#     end
+#
+#     def debug=(bool)
 #       $DEBUG = bool
 #     end
 #
 #     # $ foo remote
-#     def remote
-#       # ...
-#     end
 #
-#     # $ foo remote --verbose
-#     def remote_verbose?
-#       @verbose = bool
-#     end
-#     def remote_verbose=(bool)
-#       @verbose = bool
-#     end
+#     class Remote < Executioner
 #
-#     # $ foo remote --force
-#     def remote_force?
-#       @force
-#     end
-#     def remote_force=(bool)
-#       @force = bool
-#     end
+#       # $ foo remote --verbose
 #
-#     # $ foo remote --output <path>
-#     def remote_output=(path)
-#       @path = path
-#     end
+#       def verbose?
+#         @verbose
+#       end
 #
-#     # $ foo remote -o <path>
-#     alias_method :remote_o=, :remote_output=
+#       def verbose=(bool)
+#         @verbose = bool
+#       end
 #
-#     # $ foo remote add
-#     def remote_add(name, branch)
-#       # ...
-#     end
+#       # $ foo remote --force
 #
-#     # $ foo remote show
-#     def remote_show(name)
-#       # ...
+#       def force?
+#         @force
+#       end
+#
+#       def remote=(bool)
+#         @force = bool
+#       end
+#
+#       # $ foo remote --output <path>
+#
+#       def output=(path)
+#         @path = path
+#       end
+#
+#       # $ foo remote -o <path>
+#
+#       alias_method :o=, :output=
+#
+#       # $ foo remote add
+#
+#       class Add < self
+#
+#         def main(name, branch)
+#           # ...
+#         end
+#
+#       end
+#
+#       # $ foo remote show
+#
+#       class Show < self
+#
+#         def main(name)
+#           # ...
+#         end
+#
+#       end
+#
 #     end
 #
 #   end
 #
 class Executioner
 
-  class NoOptionError < ::NoMethodError # ArgumentError ?
-    def initialize(name, *arg)
-      super("unknown option -- #{name}", name, *args)
-    end
-  end
+  require 'executioner/errors'
+  require 'executioner/help'
 
-  class NoCommandError < ::NoMethodError
-    def initialize(name, *args)
-      super("unknown command -- #{name}", name, *args)
-    end
-  end
-
-  class MissingCommandError < ::ArgumentError
-    def initialize(*args)
-      super("missing command", *args)
-    end
-  end
-
-  # Used to invoke the command.
-  def execute_command(argv=ARGV)
-    self.class.run(self, argv)
-  end
-  alias_method :run, :execute_command
-
-  # This is the fallback subcommand. Override this to provide
-  # a fallback when no command is given on the commandline.
-  def command_missing
-    begin
-      main
-    rescue NameError
-      raise MissingCommandError
-    end
+  #
+  def main(*args)
+    #puts self.class  # TODO: fix help
+    raise NoCommandError
   end
 
   # Override option_missing if needed. This receives
   # the name of the option and the remaining arguments
   # list. It must consume any argument it uses from
   # the (begining of) the list.
-  def option_missing(opt, *argv)
+  def option_missing(opt, argv)
     raise NoOptionError, opt
-  end
-
-  #
-  def to_s
-    self.class.to_s
   end
 
   class << self
 
+    # Helper method for creating switch attributes.
+    #
+    #   def name=(val)
+    #     @name = val
+    #   end
+    #
+    #   def name?
+    #     @name
+    #   end
     #
     def attr_switch(name)
-      attr_writer :name
+      attr_writer name
       module_eval %{
         def #{name}?
           @#{name}
@@ -110,50 +111,94 @@ class Executioner
     end
 
     #
-    def run(obj, argv=ARGV)
-      args = parse(obj, argv)
-      subcmd = args.shift
-      if subcmd && !obj.respond_to?("#{subcmd}=")
-        begin
-          obj.send(subcmd, *args)
-        rescue NoMethodError
-          raise NoCommandError, subcmd
-        end
-      else
-        obj.command_missing
-      end
+    def execute(argv=ARGV)
+      argv = parse_arguments(argv)
+
+      cmd, argv = parse_subcommand(argv)
+      cli  = cmd.new
+      args = parse(cli, argv)
+
+      cli.main(*args)
+
+      return cli
     end
 
-    #def run(obj)
-    #  methname, args = *parse(obj)
-    #  meth = obj.method(methname)
-    #  meth.call(*args)
-    #end
+    # Executioners don't run, they execute! But...
+    alias_method :run, :execute
+
+    # Make sure arguments are an array. If argv is a String,
+    # then parse using Shellwords module.
+    def parse_arguments(argv)
+      if String === argv
+        require 'shellwords'
+        argv = Shellwords.shellwords(argv)
+      end
+      argv.to_a
+    end
 
     #
-    def parse(obj, argv)
+    def parse_subcommand(argv)
+      cmd = self
+      arg = argv.first
+
+      while c = cmd.subcommands[arg]
+        cmd = c
+        argv.shift
+        arg = argv.first
+      end
+
+      return cmd, argv
+    end
+
+    # List if subcommands.
+    def subcommands
+      @subcommands ||= (
+        consts = constants - superclass.constants
+        consts.inject({}) do |h, c|
+          c = const_get(c)
+          if Executioner > c
+            n = c.name.split('::').last.downcase
+            h[n] = c
+          end
+          h
+        end
+      )
+    end
+
+    #
+    def parse(obj, argv, args=[])
       case argv
       when String
         require 'shellwords'
         argv = Shellwords.shellwords(argv)
-      else
-        argv = argv.dup
+      #else
+      #  argv = argv.dup
       end
 
-      argv = argv.dup
-      args, opts, i = [], {}, 0
+      #subc = nil
+      #@args = []  #opts, i = {}, 0
+
       while argv.size > 0
-        case opt = argv.shift
+        case arg = argv.shift
         when /=/
-          parse_equal(obj, opt, argv, args)
+          parse_equal(obj, arg, argv, args)
         when /^--/
-          parse_option(obj, opt, argv, args)
+          parse_option(obj, arg, argv, args)
         when /^-/
-          parse_flags(obj, opt, argv, args)
+          parse_flags(obj, arg, argv, args)
         else
-          args << opt
+          #if Executioner === obj
+          #  if cmd_class = obj.class.subcommands[arg]
+          #    cmd  = cmd_class.new(obj)
+          #    subc = cmd
+          #    parse(cmd, argv, args)
+          #  else
+              args << arg
+          #  end
+          #end
         end
       end
+     
       return args
     end
 
@@ -165,47 +210,24 @@ class Executioner
         raise ArgumentError, "#{x}"
       end
       if obj.respond_to?("#{x}=")
-        obj.send("#{x}=", v)
-      elsif obj.respond_to?("#{args.join('_')}_#{x}=")
-        obj.send("#{args.join('_')}_#{x}=", v)
+        obj.send("#{x}=", v)  # TODO: to_b if 'true' or 'false' ?
       else
         obj.option_missing(x, v) # argv?
       end
-      #if obj.respond_to?("#{x}=")
-      #  # TODO: to_b if 'true' or 'false' ?
-      #  obj.send("#{x}=",v)
-      #else
-      #  obj.option_missing(x, v) # argv?
-      #end
     end
 
     # Parse a command-line option.
     def parse_option(obj, opt, argv, args)
       x = opt.sub(/^\-+/, '') # remove '--'
-      if obj.respond_to?("#{args.join('_')}_#{x}=")
-        m = obj.method("#{args.join('_')}_#{x}=")
-        if obj.respond_to?("#{args.join('_')}_#{x}?")
-          m.call(true)
-        else
-          m.call(argv.shift)
-        end
-      #elsif obj.respond_to?("#{args.join('_')}_#{x}!")
-      #  m = obj.method("#{args.join('_')}_#{x}!")
-      #  a = []
-      #  m.arity.abs.times{ a << argv.shift }
-      #  m.call(*a)
-      elsif obj.respond_to?("#{x}=")
+      if obj.respond_to?("#{x}=")
         m = obj.method("#{x}=")
         if obj.respond_to?("#{x}?")
           m.call(true)
         else
-          m.call(argv.shift)
+          invoke(obj, m, argv)
         end
-      #elsif obj.respond_to?("#{x}!")
-      #  m = obj.method("#{x}!")
-      #  a = []
-      #  m.arity.abs.times{ a << argv.shift }
-      #  m.call(*a)
+      elsif obj.respond_to?("#{x}!")
+        invoke(obj, "#{x}!", argv)
       else
         obj.option_missing(x, argv)
       end
@@ -221,25 +243,46 @@ class Executioner
           if obj.respond_to?("#{x}?")
             m.call(true)
           else
-            #a = []
-            #m.arity.times{ a << argv.shift }
-            #m.call(*a)
-            m.call(argv.shift)
+            invoke(obj, m, argv) #m.call(argv.shift)
           end
-        #elsif obj.respond_to?("#{k}!")
-        #  m = obj.method("#{k}!")
-        #  a = []
-        #  m.arity.times{ a << argv.shift }
-        #  m.call(*a)
+        elsif obj.respond_to?("#{k}!")
+          invoke(obj, "#{k}!", argv)
         else
-          obj.option_missing(x, argv)
+          long = find_longer_option(obj, k)
+          if long
+            if long.end_with?('=') && obj.respond_to?(long.chomp('=')+'?')
+              invoke(obj, long, [true])
+            else
+              invoke(obj, long, argv)
+            end
+          else
+            obj.option_missing(x, argv)
+          end
         end
-        #if obj.respond_to?("#{k}=")
-        #  obj.send("#{k}=",true)
-        #else
-        #  obj.option_missing(x, argv)
-        #end
       end
+    end
+
+    #
+    def invoke(obj, meth, argv)
+      m = Method === meth ? meth : obj.method(meth)
+      a = []
+      m.arity.abs.times{ a << argv.shift }
+      m.call(*a)
+    end
+
+    # TODO: Sort alphabetically?
+    def find_longer_option(obj, char)
+      meths = obj.methods.map{ |m| m.to_s }
+      meths = meths.select do |m|
+        m.start_with?(k) and (m.end_with?('=') or m.end_with?('!'))
+      end
+      meths.first
+    end
+
+    #
+    def description(description=nil)
+      @description = description unless description.nil?
+      @description
     end
 
     #
@@ -259,84 +302,11 @@ class Executioner
       @desc = nil
     end
 
+    alias_method :inspect, :to_s
+
     #
-    def to_s
-      Help.new(self).to_s
-    end
-
-    # Encpsulates help output with code to display well formated help
-    # output and manpages output.
-    class Help
-
-      attr :exe_class
-
-      #
-      def initialize(exe_class)
-        @exe_class = exe_class
-      end
-
-      #
-      def to_s
-        help_text
-      end
-
-      #
-      def to_manpage
-      end
-
-      #
-      def help_text
-        commands        = []
-        command_options = Hash.new{|h,k| h[k]=[]}
-        global_options  = []
-
-        descriptions = exe_class.descriptions
-
-        descs = descriptions.to_a.sort{ |a,b| a[0] <=> b[0] }
-        descs.each do |(meth, desc)|
-          case meth
-          when /_(.*?)[\!\=]$/
-            command_options[$`] << [$1, meth]
-          when /^(.*?)[\!\=]$/
-            global_options << [$1, meth]
-          else
-            commands << meth
-          end
-        end
-
-        s = ''
-        s << File.basename($0)
-
-        if !commands.empty?
-          s << "\n\nCOMMANDS:\n\n"
-          commands.each do |cmd|
-            s << "  %-15s %s\n" % [cmd, descriptions[cmd]]
-          end
-        end
-
-        command_options.each do |cmd, opts|
-          s << "\nOPTIONS FOR #{cmd}:\n\n"
-          opts.each do |(name, meth)|
-            if name.size == 1
-              s << "   -%-15s %s\n" % [name, descriptions[meth]]
-            else
-              s << "  --%-15s %s\n" % [name, descriptions[meth]]
-            end
-          end
-        end
-
-        s << "\nCOMMON OPTIONS:\n\n"
-        global_options.each do |(name, meth)|
-          if name.size == 1
-            s << "   -%-15s %s\n" % [name, descriptions[meth]]
-          else
-            s << "  --%-15s %s\n" % [name, descriptions[meth]]
-          end
-        end
-        s << "\n"
-        s
-      end
-
+    def help_text #to_s
+      Help.new(self).help_text
     end
 
   end
