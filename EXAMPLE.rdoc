@@ -16,10 +16,10 @@ provided in documentation for Ruby built-in OptionParser
 
       def initialize
         super
-        reset!
+        reset
       end
 
-      def reset!
+      def reset
         @options = OpenStruct.new
         @options.library = []
         @options.inplace = false
@@ -99,27 +99,27 @@ provided in documentation for Ruby built-in OptionParser
       help "Run verbosely"
 
       # Boolean switch.
+      def verbose=(bool)
+        options.verbose = bool
+      end
       def verbose?
-        options.verbose = true
+        options.verbose
       end
-      def no_verbose?
-        options.verbose = false
-      end
+      alias :v= :verbose=
       alias :v? :verbose?
 
       help "Show this message"
 
       # No argument, shows at tail.  This will print an options summary.
-      def help?
+      def help!
         puts self
         exit
       end
-      alias :h? :help?
 
       help "Show version"
 
       # Another typical switch to print the version.
-      def version?
+      def version!
         puts VERSION
         exit
       end

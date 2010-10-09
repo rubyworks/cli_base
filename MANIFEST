@@ -1,4 +1,6 @@
 #!mast -x Syckfile bin lib meta qed test [A-Z]*
+lib/executioner/errors.rb
+lib/executioner/help.rb
 lib/executioner/meta/data.rb
 lib/executioner/meta/package
 lib/executioner/meta/profile
@@ -6,13 +8,12 @@ lib/executioner.rb
 meta/data.rb
 meta/package
 meta/profile
-qed/01_executor/01_single_command.rdoc
-qed/01_executor/02_multiple_commands.rdoc
-qed/01_executor/03_rdoc_example.rdoc
-qed/01_executor/04_help_text.rdoc
+qed/01_single_command.rdoc
+qed/02_multiple_commands.rdoc
+qed/03_rdoc_example.rdoc
+qed/04_help_text.rdoc
 qed/samples/help.txt
-test/test_cliable.rb
-test/test_tieclip.rb
+test/test_executioner.rb
 HISTORY.rdoc
 LICENSE
 README.rdoc

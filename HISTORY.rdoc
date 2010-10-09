@@ -1,19 +1,30 @@
 = RELEASE HISTORY
 
-== 0.3.0 / 2010-09-12
+== 0.4.0 / 2010-10-12
 
-The most significant change is the use bang methods (foo!)
-for option flags instead to of query-methods (foo?).
+Ooo... I found an even better API. Rather than use methods to denote commands,
+the new API uses nested classes.
 
 Changes:
 
-* Use bang methods for option flags.
+* New API!
+
+
+== 0.3.0 / 2010-09-12
+
+The most significant change is the use bang methods (foo!) for option flags.
+
+Changes:
+
+* Allow bang methods for option flags.
 
 
 == 0.2.0 / 2010-03-02
 
-Initial release of TieClip, the clip-on tie of CLI frameworks
-for Ruby.
+Initial (non-public) release. Executioner is a rebranding of older library
+called TieClip. TieClip has moved in a completely different direction,
+so Executioner was create to preserve and continue development of it's
+design elements.
 
 Changes:
 
