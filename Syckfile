@@ -23,13 +23,15 @@ ridoc:
   service: RIDoc
   include: ~
   exclude: ~
+  output : ri
   active : true
 
 rdoc:
   service : RDoc
-  template: redfish
+  template: newfish #blackfish
   include : ~
   exclude : [ Syckfile ]
+  outout  : site/docs/api
   active  : true
 
 syntax:
