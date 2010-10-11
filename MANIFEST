@@ -12,9 +12,11 @@ qed/01_single_command.rdoc
 qed/02_multiple_commands.rdoc
 qed/03_rdoc_example.rdoc
 qed/04_help_text.rdoc
+qed/applique/compare.rb
 qed/samples/help.txt
 test/test_executioner.rb
 HISTORY.rdoc
 LICENSE
 README.rdoc
+ROADMAP.rdoc
 EXAMPLE.rdoc

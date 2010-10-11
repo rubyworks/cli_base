@@ -4,7 +4,7 @@ suite  : rubyworks
 summary: Killer Commandlines
 contact: Trans <transfire@gmail.com>
 license: Apache 2.0
-authors: Thomas Sawyer
+authors: [Thomas Sawyer]
 created: 2008-08-08
 
 description:
