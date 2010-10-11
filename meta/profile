@@ -14,10 +14,10 @@ description:
   method definitions.
 
 resources:
-  home: http://rubyworks.github.com/tieclip
-  code: http://github.com/rubyworks/tieclip
+  home: http://rubyworks.github.com/executioner
+  code: http://github.com/rubyworks/executioner
   mail: http://groups.google.com/group/rubyworks-mailinglist
 
 copyright:
-  Copyright (c) 2008 Thomas Sawyer
+  Copyright (c) 2010 Thomas Sawyer
 
