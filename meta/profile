@@ -9,9 +9,8 @@ created: 2008-08-08
 
 description:
   Executioner is an OCM (Object Command Mapper) CLI framework for Ruby.
-  A single subclass of the Executioner base class can define a complete
-  multi-command command line tool using nothing more than Ruby's own
-  method definitions.
+  A subclass of the Executioner base class can define a complete
+  command line tool using nothing more than Ruby's own method definitions.
 
 resources:
   home: http://rubyworks.github.com/executioner
