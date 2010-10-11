@@ -5,27 +5,30 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-  <title>File: EXAMPLE.rdoc [TieClip]</title>
+  <title>File: EXAMPLE.rdoc [Executioner]</title>
 
-  <link rel="SHORTCUT ICON" href="../assets/icon/file.png">
+  <link rel="SHORTCUT ICON" href="./assets/icon/file.png">
 
-  <link type="text/css" rel="stylesheet" href="../assets/rdoc.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="../assets/highlight/styles/github.css" title="GitHub" />
+  <link type="text/css" rel="stylesheet" href="./assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="./assets/highlight/styles/github.css" title="GitHub" />
 
-  <script type="text/javascript" charset="utf-8" src="../assets/jquery.js"></script>
-  <script type="text/javascript" charset="utf-8" src="../assets/highlight/highlight.pack.js"></script>
-  <script type="text/javascript" charset="utf-8" src="../assets/quicksearch.js"></script>
-  <script type="text/javascript" charset="utf-8" src="../assets/main.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/main.js"></script>
 
   <script type="text/javascript">
     $(document).ready( function() {
-      hookHighlightSyntax();
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
 	    hookSourceViews();
 	    hookDebuggingToggle();
 	    hookQuickSearch();
 	    highlightLocationTarget();
 
-	    $('ul.link-list a').bind("click", highlightClickTarget);
+	    $('ul.link-list a').bind( "click", highlightClickTarget );
     });
   </script>
 </head>
@@ -35,8 +38,8 @@
 
   <div class="head">
     <h1>
-      <img src="../assets/icon/file.png" align="absmiddle">&nbsp;
-      <a href="../index.html">TieClip</a>&nbsp;
+      <img src="./assets/icon/file.png" align="absmiddle">&nbsp;
+      <a href="./index.html">Executioner</a>&nbsp;
       <a href="/">EXAMPLE.rdoc</a>
     </h1>
   </div>
@@ -46,7 +49,7 @@
       <h3 class="section-header">File Stats</h3>
       <dl>
         <dt class="modified-date">Last Modified</dt>
-        <dd class="modified-date">Mon Apr 19 10:55:06 -0400 2010</dd>
+        <dd class="modified-date">2010-10-10 21:56:39 -0400</dd>
 
         
 
@@ -61,13 +64,15 @@
         <h3 class="section-header">Information</h3>
         <ul>
         
-          <li class="file"><a href="../files/HISTORY.html">HISTORY</a></li>
+          <li class="file"><a href="./HISTORY_rdoc.html">HISTORY.rdoc</a></li>
         
-          <li class="file"><a href="../files/EXAMPLE_rdoc.html">EXAMPLE.rdoc</a></li>
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
         
-          <li class="file"><a href="../files/LICENSE.html">LICENSE</a></li>
+          <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
         
-          <li class="file"><a href="../files/README_rdoc.html">README.rdoc</a></li>
+          <li class="file"><a href="./ROADMAP_rdoc.html">ROADMAP.rdoc</a></li>
+        
+          <li class="file"><a href="./EXAMPLE_rdoc.html">EXAMPLE.rdoc</a></li>
         
         </ul>
       </div>
@@ -75,7 +80,7 @@
 
       <div id="classindex-section" class="section project-section">
         <h3 class="section-header">Class Index
-          <span class="search-toggle"><img src="../assets/icon/find.png"
+          <span class="search-toggle"><img src="./assets/icon/find.png"
             height="16" width="16" alt="[+]"
             title="show/hide quicksearch" /></span></h3>
         <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
@@ -88,19 +93,13 @@
 
         <ul class="link-list">
         
-          <li class="class"><a href="../classes/TieClip.html">TieClip</a></li>
+          <li class="class"><a href="./Executioner.html">Executioner</a></li>
         
-          <li class="class"><a href="../classes/TieClip/MissingCommandError.html">TieClip::MissingCommandError</a></li>
+          <li class="class"><a href="./Executioner/Help.html">Executioner::Help</a></li>
         
-          <li class="class"><a href="../classes/TieClip/NoCommandError.html">TieClip::NoCommandError</a></li>
+          <li class="class"><a href="./Executioner/NoCommandError.html">Executioner::NoCommandError</a></li>
         
-          <li class="class"><a href="../classes/TieClip/NoOptionError.html">TieClip::NoOptionError</a></li>
-        
-          <li class="module"><a href="../classes/Cliable.html">Cliable</a></li>
-        
-          <li class="class"><a href="../classes/Cliable/NoCommandError.html">Cliable::NoCommandError</a></li>
-        
-          <li class="class"><a href="../classes/Cliable/NoOptionError.html">Cliable::NoOptionError</a></li>
+          <li class="class"><a href="./Executioner/NoOptionError.html">Executioner::NoOptionError</a></li>
         
         </ul>
         <div id="no-class-search-results" style="display: none;">No matching classes.</div>
@@ -113,152 +112,158 @@
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000021">::descriptions</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-attr_switch">::attr_switch</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000023">::help</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-descriptions">::descriptions</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000024">::method_added</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-execute">::execute</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip::NoCommandError</span>
-              <a href="classes/TieClip/NoCommandError.html#M000001">::new</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-find_longer_option">::find_longer_option</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip::NoOptionError</span>
-              <a href="classes/TieClip/NoOptionError.html#M000000">::new</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-footer">::footer</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip::MissingCommandError</span>
-              <a href="classes/TieClip/MissingCommandError.html#M000003">::new</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-header">::header</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000013">::parse</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-help">::help</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000014">::parse</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-inspect">::inspect</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000015">::parse_equal</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-invoke">::invoke</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000016">::parse_equal</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-method_added">::method_added</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000020">::parse_flags</a>
+              <span class="method-parent-aside">Executioner::NoCommandError</span>
+              <a href="Executioner/NoCommandError.html#method-c-new">::new</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000018">::parse_flags</a>
+              <span class="method-parent-aside">Executioner::Help</span>
+              <a href="Executioner/Help.html#method-c-new">::new</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000017">::parse_option</a>
+              <span class="method-parent-aside">Executioner::NoOptionError</span>
+              <a href="Executioner/NoOptionError.html#method-c-new">::new</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000019">::parse_option</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse">::parse</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000010">::run</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse_arguments">::parse_arguments</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000012">::run</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse_equal">::parse_equal</a>
             </li>
           
             
             <li class="singleton" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000022">::to_s</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse_flags">::parse_flags</a>
+            </li>
+          
+            
+            <li class="singleton" style="clear: both;">
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse_option">::parse_option</a>
+            </li>
+          
+            
+            <li class="singleton" style="clear: both;">
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-parse_subcommand">::parse_subcommand</a>
+            </li>
+          
+            
+            <li class="singleton" style="clear: both;">
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-run">::run</a>
+            </li>
+          
+            
+            <li class="singleton" style="clear: both;">
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-subcommands">::subcommands</a>
+            </li>
+          
+            
+            <li class="singleton" style="clear: both;">
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-c-to_s">::to_s</a>
             </li>
           
             
             <li class="method" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000008">#command_missing</a>
+              <span class="method-parent-aside">Executioner::Help</span>
+              <a href="Executioner/Help.html#method-i-help_text">#help_text</a>
             </li>
           
             
             <li class="method" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000005">#command_missing</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-i-main">#main</a>
             </li>
           
             
             <li class="method" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000004">#execute_command</a>
+              <span class="method-parent-aside">Executioner</span>
+              <a href="Executioner.html#method-i-option_missing">#option_missing</a>
             </li>
           
             
             <li class="method" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000002">#execute_command</a>
-            </li>
-          
-            
-            <li class="method" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000009">#option_missing</a>
-            </li>
-          
-            
-            <li class="method" style="clear: both;">
-              <span class="method-parent-aside">Cliable</span>
-              <a href="classes/Cliable.html#M000006">#option_missing</a>
-            </li>
-          
-            
-            <li class="method" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000007">#run</a>
-            </li>
-          
-            
-            <li class="method" style="clear: both;">
-              <span class="method-parent-aside">TieClip</span>
-              <a href="classes/TieClip.html#M000011">#to_s</a>
+              <span class="method-parent-aside">Executioner::Help</span>
+              <a href="Executioner/Help.html#method-i-to_manpage">#to_manpage</a>
             </li>
           
         </ul>
@@ -268,9 +273,9 @@
     <div id="validator-badges">
       
       <div style="float: right; margin-right: 5px;">
-        <a href="http://validator.w3.org/check/referer"><img src="../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+        <a href="http://validator.w3.org/check/referer"><img src="./assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
       </div>
-      Generated with <a href="http://proutils.github.com/webri">WebRI Redfish</a> 1.2
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle Newfish</a> 1.4.0
       <br/><br/>
     </div>
   </div>
@@ -289,16 +294,18 @@
   <div id="documentation">
     <h1>Example from OptionParser</h1>
 <p>
-Here is an example <a href="../classes/TieClip.html">TieClip</a> subclass
-that mimics the example provided in documentation for Ruby built-in
-OptionParser (see <a
+Here is an example <a href="Executioner.html">Executioner</a> subclass that
+mimics the example provided in documentation for Ruby built-in OptionParser
+(see <a
 href="http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html">here</a>).
 </p>
 <pre>
-    require 'tieclip'
+    require 'executioner'
     require 'ostruct'
 
-    class ExampleCLI &lt; TieClip
+    class ExampleCLI &lt; Executioner
+
+      header &quot;Example of Executioner CLI&quot;
 
       CODES = %w[iso-2022-jp shift_jis euc-jp utf8 binary]
       CODE_ALIASES = { &quot;jis&quot; =&gt; &quot;iso-2022-jp&quot;, &quot;sjis&quot; =&gt; &quot;shift_jis&quot; }
@@ -307,10 +314,10 @@ href="http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html"
 
       def initialize
         super
-        reset!
+        reset
       end
 
-      def reset!
+      def reset
         @options = OpenStruct.new
         @options.library = []
         @options.inplace = false
@@ -390,28 +397,28 @@ href="http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html"
       help &quot;Run verbosely&quot;
 
       # Boolean switch.
+      def verbose=(bool)
+        options.verbose = bool
+      end
       def verbose?
-        options.verbose = true
+        options.verbose
       end
-      def no_verbose?
-        options.verbose = false
-      end
+      alias :v= :verbose=
       alias :v? :verbose?
 
       help &quot;Show this message&quot;
 
       # No argument, shows at tail.  This will print an options summary.
-      def help?
+      def help!
         puts self
         exit
       end
-      alias :h? :help?
 
       help &quot;Show version&quot;
 
       # Another typical switch to print the version.
-      def version?
-        puts TieClip::VERSION
+      def version!
+        puts VERSION
         exit
       end
 
@@ -422,10 +429,10 @@ href="http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html"
 </pre>
 <p>
 The only signifficant difference in capability between OptionParser and <a
-href="../classes/TieClip.html">TieClip</a> is that <a
-href="../classes/TieClip.html">TieClip</a> does not support optional switch
+href="Executioner.html">Executioner</a> is that <a
+href="Executioner.html">Executioner</a> does not support optional switch
 arguments. These can easily lead to malformed command-lines, so they were
-let out of TieClips specifcation.
+let out of Executioners specifcation.
 </p>
 
   </div>

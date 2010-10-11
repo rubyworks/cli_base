@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+  <title>Class: Executioner</title>
+
+  
+    <link rel="SHORTCUT ICON" href="./assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="./assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="./assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="./assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind( "click", highlightClickTarget );
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="./assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="./index.html">Executioner</a>&nbsp;
+      <a href="/">Executioner</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="./lib/executioner_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/executioner.rb">lib/executioner.rb</a></li>
+          
+            <li class="file"><a href="./lib/executioner/help_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/executioner/help.rb">lib/executioner/help.rb</a></li>
+          
+            <li class="file"><a href="./lib/executioner/errors_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/executioner/errors.rb">lib/executioner/errors.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Object</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+      <div id="namespace-list-section" class="section">
+        <h3 class="section-header">Namespace</h3>
+        <ul class="link-list">
+          
+          <li class="class"><a href="Executioner/Help.html">Executioner::Help</a></li>
+          
+          <li class="class"><a href="Executioner/NoCommandError.html">Executioner::NoCommandError</a></li>
+          
+          <li class="class"><a href="Executioner/NoOptionError.html">Executioner::NoOptionError</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#method-c-attr_switch">::attr_switch</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-descriptions">::descriptions</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-execute">::execute</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-find_longer_option">::find_longer_option</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-footer">::footer</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-header">::header</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-help">::help</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-inspect">::inspect</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-invoke">::invoke</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-method_added">::method_added</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse">::parse</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse_arguments">::parse_arguments</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse_equal">::parse_equal</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse_flags">::parse_flags</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse_option">::parse_option</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-parse_subcommand">::parse_subcommand</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-run">::run</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-subcommands">::subcommands</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-to_s">::to_s</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-main">#main</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-option_missing">#option_missing</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="./HISTORY_rdoc.html">HISTORY.rdoc</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="./ROADMAP_rdoc.html">ROADMAP.rdoc</a></li>
+        
+          <li class="file"><a href="./EXAMPLE_rdoc.html">EXAMPLE.rdoc</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="class"><a href="./Executioner.html">Executioner</a></li>
+        
+          <li class="class"><a href="./Executioner/Help.html">Executioner::Help</a></li>
+        
+          <li class="class"><a href="./Executioner/NoCommandError.html">Executioner::NoCommandError</a></li>
+        
+          <li class="class"><a href="./Executioner/NoOptionError.html">Executioner::NoOptionError</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="./assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle Newfish</a> 1.4.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+
+      <h1><a href="Executioner.html">Executioner</a></h1>
+<pre>
+  class MyCLI &lt; Executioner
+
+    # cmd --debug
+
+    def debug?
+      $DEBUG
+    end
+
+    def debug=(bool)
+      $DEBUG = bool
+    end
+
+    # $ foo remote
+
+    class Remote &lt; Executioner
+
+      # $ foo remote --verbose
+
+      def verbose?
+        @verbose
+      end
+
+      def verbose=(bool)
+        @verbose = bool
+      end
+
+      # $ foo remote --force
+
+      def force?
+        @force
+      end
+
+      def remote=(bool)
+        @force = bool
+      end
+
+      # $ foo remote --output &lt;path&gt;
+
+      def output=(path)
+        @path = path
+      end
+
+      # $ foo remote -o &lt;path&gt;
+
+      alias_method :o=, :output=
+
+      # $ foo remote add
+
+      class Add &lt; self
+
+        def main(name, branch)
+          # ...
+        end
+
+      end
+
+      # $ foo remote show
+
+      class Show &lt; self
+
+        def main(name)
+          # ...
+        end
+
+      end
+
+    end
+
+  end</pre>
+
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="attr-switch-method" class="method-detail ">
+        <a name="method-c-attr_switch"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">attr_switch</span><span
+            class="method-args">(name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Helper method for creating switch attributes.
+</p>
+<pre>
+  def name=(val)
+    @name = val
+  end
+
+  def name?
+    @name
+  end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="attr-switch-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 104</span>
+104:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attr_switch</span>(<span class="ruby-identifier">name</span>)
+105:       <span class="ruby-identifier">attr_writer</span> <span class="ruby-identifier">name</span>
+106:       <span class="ruby-identifier">module_eval</span> <span class="ruby-node">%{
+107:         def #{name}?
+108:           @#{name}
+109:         end
+110:       }</span>
+111:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="descriptions-method" class="method-detail ">
+        <a name="method-c-descriptions"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">descriptions</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Hash for storing descriptions.   
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="descriptions-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 309</span>
+309:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">descriptions</span>
+310:       <span class="ruby-ivar">@descriptions</span> <span class="ruby-operator">||=</span> (
+311:         <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">ancestors</span>[<span class="ruby-value">1</span>]
+312:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Executioner</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">parent</span>
+313:           <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">descriptions</span>.<span class="ruby-identifier">dup</span>
+314:         <span class="ruby-keyword kw">else</span>
+315:           {}
+316:         <span class="ruby-keyword kw">end</span>
+317:       )
+318:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="execute-method" class="method-detail ">
+        <a name="method-c-execute"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">execute</span><span
+            class="method-args">(argv=ARGV)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="execute-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 114</span>
+114:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">argv</span>=<span class="ruby-constant">ARGV</span>)
+115:       <span class="ruby-identifier">argv</span> = <span class="ruby-identifier">parse_arguments</span>(<span class="ruby-identifier">argv</span>)
+116: 
+117:       <span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">argv</span> = <span class="ruby-identifier">parse_subcommand</span>(<span class="ruby-identifier">argv</span>)
+118:       <span class="ruby-identifier">cli</span>  = <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">new</span>
+119:       <span class="ruby-identifier">args</span> = <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">cli</span>, <span class="ruby-identifier">argv</span>)
+120: 
+121:       <span class="ruby-identifier">cli</span>.<span class="ruby-identifier">main</span>(*<span class="ruby-identifier">args</span>)
+122: 
+123:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">cli</span>
+124:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Executioner.html#method-c-run">run</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="find-longer-option-method" class="method-detail ">
+        <a name="method-c-find_longer_option"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">find_longer_option</span><span
+            class="method-args">(obj, char)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: Sort alphabetically?
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="find-longer-option-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 274</span>
+274:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_longer_option</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">char</span>)
+275:       <span class="ruby-identifier">meths</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span> }
+276:       <span class="ruby-identifier">meths</span> = <span class="ruby-identifier">meths</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+277:         <span class="ruby-identifier">m</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-identifier">char</span>) <span class="ruby-keyword kw">and</span> (<span class="ruby-identifier">m</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-value str">'='</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-value str">'!'</span>))
+278:       <span class="ruby-keyword kw">end</span>
+279:       <span class="ruby-identifier">meths</span>.<span class="ruby-identifier">first</span>
+280:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="footer-method" class="method-detail ">
+        <a name="method-c-footer"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">footer</span><span
+            class="method-args">(text=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Get or set a help footer for the command.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="footer-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 289</span>
+289:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">footer</span>(<span class="ruby-identifier">text</span>=<span class="ruby-keyword kw">nil</span>)
+290:       <span class="ruby-ivar">@footer</span> = <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+291:       <span class="ruby-ivar">@footer</span>
+292:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="header-method" class="method-detail ">
+        <a name="method-c-header"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">header</span><span
+            class="method-args">(text=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Get or set a help header for the command.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="header-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 283</span>
+283:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">header</span>(<span class="ruby-identifier">text</span>=<span class="ruby-keyword kw">nil</span>)
+284:       <span class="ruby-ivar">@header</span> = <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+285:       <span class="ruby-ivar">@header</span>
+286:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="help-method" class="method-detail ">
+        <a name="method-c-help"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">help</span><span
+            class="method-args">(description)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Define help information for an option.
+</p>
+<pre>
+  help &quot;this options does blah blah&quot;
+  def foo=(val)
+    ...
+  end</pre>
+          
+
+          
+          <div class="method-source-code"
+            id="help-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 304</span>
+304:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">help</span>(<span class="ruby-identifier">description</span>)
+305:       <span class="ruby-ivar">@help</span> = <span class="ruby-identifier">description</span>
+306:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="inspect-method" class="method-detail ">
+        <a name="method-c-inspect"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="inspect-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 328</span>
+328:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+329:       <span class="ruby-identifier">name</span>
+330:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="invoke-method" class="method-detail ">
+        <a name="method-c-invoke"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">invoke</span><span
+            class="method-args">(obj, meth, argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="invoke-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 266</span>
+266:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">meth</span>, <span class="ruby-identifier">argv</span>)
+267:       <span class="ruby-identifier">m</span> = <span class="ruby-constant">Method</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">meth</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">meth</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">meth</span>)
+268:       <span class="ruby-identifier">a</span> = []
+269:       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">arity</span>.<span class="ruby-identifier">abs</span>.<span class="ruby-identifier">times</span>{ <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">shift</span> }
+270:       <span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(*<span class="ruby-identifier">a</span>)
+271:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="method-added-method" class="method-detail ">
+        <a name="method-c-method_added"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">method_added</span><span
+            class="method-args">(name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="method-added-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 321</span>
+321:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_added</span>(<span class="ruby-identifier">name</span>)
+322:       <span class="ruby-comment cmt">#name = name.to_s.chomp('?').chomp('=')</span>
+323:       <span class="ruby-identifier">descriptions</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-ivar">@help</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@help</span>
+324:       <span class="ruby-ivar">@help</span> = <span class="ruby-keyword kw">nil</span>
+325:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-method" class="method-detail ">
+        <a name="method-c-parse"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse</span><span
+            class="method-args">(obj, argv, args=[])</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="parse-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 169</span>
+169:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>=[])
+170:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">argv</span>
+171:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+172:         <span class="ruby-identifier">require</span> <span class="ruby-value str">'shellwords'</span>
+173:         <span class="ruby-identifier">argv</span> = <span class="ruby-constant">Shellwords</span>.<span class="ruby-identifier">shellwords</span>(<span class="ruby-identifier">argv</span>)
+174:       <span class="ruby-comment cmt">#else</span>
+175:       <span class="ruby-comment cmt">#  argv = argv.dup</span>
+176:       <span class="ruby-keyword kw">end</span>
+177: 
+178:       <span class="ruby-comment cmt">#subc = nil</span>
+179:       <span class="ruby-comment cmt">#@args = []  #opts, i = {}, 0</span>
+180: 
+181:       <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+182:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">shift</span>
+183:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/=/</span>
+184:           <span class="ruby-identifier">parse_equal</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">arg</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+185:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^--/</span>
+186:           <span class="ruby-identifier">parse_option</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">arg</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+187:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^-/</span>
+188:           <span class="ruby-identifier">parse_flags</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">arg</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+189:         <span class="ruby-keyword kw">else</span>
+190:           <span class="ruby-comment cmt">#if Executioner === obj</span>
+191:           <span class="ruby-comment cmt">#  if cmd_class = obj.class.subcommands[arg]</span>
+192:           <span class="ruby-comment cmt">#    cmd  = cmd_class.new(obj)</span>
+193:           <span class="ruby-comment cmt">#    subc = cmd</span>
+194:           <span class="ruby-comment cmt">#    parse(cmd, argv, args)</span>
+195:           <span class="ruby-comment cmt">#  else</span>
+196:               <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">arg</span>
+197:           <span class="ruby-comment cmt">#  end</span>
+198:           <span class="ruby-comment cmt">#end</span>
+199:         <span class="ruby-keyword kw">end</span>
+200:       <span class="ruby-keyword kw">end</span>
+201:      
+202:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">args</span>
+203:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-arguments-method" class="method-detail ">
+        <a name="method-c-parse_arguments"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_arguments</span><span
+            class="method-args">(argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Make sure arguments are an array. If argv is a String, then parse using
+Shellwords module.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="parse-arguments-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 146</span>
+146:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_arguments</span>(<span class="ruby-identifier">argv</span>)
+147:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">argv</span>
+148:         <span class="ruby-identifier">require</span> <span class="ruby-value str">'shellwords'</span>
+149:         <span class="ruby-identifier">argv</span> = <span class="ruby-constant">Shellwords</span>.<span class="ruby-identifier">shellwords</span>(<span class="ruby-identifier">argv</span>)
+150:       <span class="ruby-keyword kw">end</span>
+151:       <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">to_a</span>
+152:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-equal-method" class="method-detail ">
+        <a name="method-c-parse_equal"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_equal</span><span
+            class="method-args">(obj, opt, argv, args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="parse-equal-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 206</span>
+206:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_equal</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+207:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">md</span> = <span class="ruby-regexp re">/^[-]*(.*?)=(.*?)$/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">opt</span>)
+208:         <span class="ruby-identifier">x</span>, <span class="ruby-identifier">v</span> = <span class="ruby-identifier">md</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">md</span>[<span class="ruby-value">2</span>]
+209:       <span class="ruby-keyword kw">else</span>
+210:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{x}&quot;</span>
+211:       <span class="ruby-keyword kw">end</span>
+212:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{x}=&quot;</span>)
+213:         <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{x}=&quot;</span>, <span class="ruby-identifier">v</span>)  <span class="ruby-comment cmt"># TODO: to_b if 'true' or 'false' ?</span>
+214:       <span class="ruby-keyword kw">else</span>
+215:         <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">option_missing</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">v</span>) <span class="ruby-comment cmt"># argv?</span>
+216:       <span class="ruby-keyword kw">end</span>
+217:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-flags-method" class="method-detail ">
+        <a name="method-c-parse_flags"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_flags</span><span
+            class="method-args">(obj, opt, argv, args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+TODO: This needs some thought concerning character spliting and arguments.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="parse-flags-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 237</span>
+237:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_flags</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+238:       <span class="ruby-identifier">x</span> = <span class="ruby-identifier">opt</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>]
+239:       <span class="ruby-identifier">c</span> = <span class="ruby-value">0</span>
+240:       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">//</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+241:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{k}=&quot;</span>)
+242:           <span class="ruby-identifier">m</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">method</span>(<span class="ruby-node">&quot;#{k}=&quot;</span>)
+243:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{x}?&quot;</span>)
+244:             <span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-keyword kw">true</span>)
+245:           <span class="ruby-keyword kw">else</span>
+246:             <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">m</span>, <span class="ruby-identifier">argv</span>) <span class="ruby-comment cmt">#m.call(argv.shift)</span>
+247:           <span class="ruby-keyword kw">end</span>
+248:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{k}!&quot;</span>)
+249:           <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-node">&quot;#{k}!&quot;</span>, <span class="ruby-identifier">argv</span>)
+250:         <span class="ruby-keyword kw">else</span>
+251:           <span class="ruby-identifier">long</span> = <span class="ruby-identifier">find_longer_option</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">k</span>)
+252:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">long</span>
+253:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">long</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-value str">'='</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">long</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-value str">'='</span>)<span class="ruby-operator">+</span><span class="ruby-value str">'?'</span>)
+254:               <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">long</span>, [<span class="ruby-keyword kw">true</span>])
+255:             <span class="ruby-keyword kw">else</span>
+256:               <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">long</span>, <span class="ruby-identifier">argv</span>)
+257:             <span class="ruby-keyword kw">end</span>
+258:           <span class="ruby-keyword kw">else</span>
+259:             <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">option_missing</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">argv</span>)
+260:           <span class="ruby-keyword kw">end</span>
+261:         <span class="ruby-keyword kw">end</span>
+262:       <span class="ruby-keyword kw">end</span>
+263:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-option-method" class="method-detail ">
+        <a name="method-c-parse_option"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_option</span><span
+            class="method-args">(obj, opt, argv, args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Parse a command-line option.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="parse-option-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 220</span>
+220:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_option</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>, <span class="ruby-identifier">args</span>)
+221:       <span class="ruby-identifier">x</span> = <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/^\-+/</span>, <span class="ruby-value str">''</span>) <span class="ruby-comment cmt"># remove '--'</span>
+222:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{x}=&quot;</span>)
+223:         <span class="ruby-identifier">m</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">method</span>(<span class="ruby-node">&quot;#{x}=&quot;</span>)
+224:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{x}?&quot;</span>)
+225:           <span class="ruby-identifier">m</span>.<span class="ruby-identifier">call</span>(<span class="ruby-keyword kw">true</span>)
+226:         <span class="ruby-keyword kw">else</span>
+227:           <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">m</span>, <span class="ruby-identifier">argv</span>)
+228:         <span class="ruby-keyword kw">end</span>
+229:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;#{x}!&quot;</span>)
+230:         <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-node">&quot;#{x}!&quot;</span>, <span class="ruby-identifier">argv</span>)
+231:       <span class="ruby-keyword kw">else</span>
+232:         <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">option_missing</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">argv</span>)
+233:       <span class="ruby-keyword kw">end</span>
+234:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="parse-subcommand-method" class="method-detail ">
+        <a name="method-c-parse_subcommand"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_subcommand</span><span
+            class="method-args">(argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="parse-subcommand-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 155</span>
+155:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_subcommand</span>(<span class="ruby-identifier">argv</span>)
+156:       <span class="ruby-identifier">cmd</span> = <span class="ruby-keyword kw">self</span>
+157:       <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">first</span>
+158: 
+159:       <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">c</span> = <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">subcommands</span>[<span class="ruby-identifier">arg</span>]
+160:         <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">c</span>
+161:         <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">shift</span>
+162:         <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">argv</span>.<span class="ruby-identifier">first</span>
+163:       <span class="ruby-keyword kw">end</span>
+164: 
+165:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">argv</span>
+166:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="run-method" class="method-detail method-alias">
+        <a name="method-c-run"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">run</span><span
+            class="method-args">(argv=ARGV)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Executioners don&#8217;t run, they execute! But&#8230;
+</p>
+          
+
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="subcommands-method" class="method-detail ">
+        <a name="method-c-subcommands"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">subcommands</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+List if subcommands.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="subcommands-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 130</span>
+130:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subcommands</span>
+131:       <span class="ruby-ivar">@subcommands</span> <span class="ruby-operator">||=</span> (
+132:         <span class="ruby-identifier">consts</span> = <span class="ruby-identifier">constants</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">constants</span>
+133:         <span class="ruby-identifier">consts</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+134:           <span class="ruby-identifier">c</span> = <span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">c</span>)
+135:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Class</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Executioner</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>
+136:             <span class="ruby-identifier">n</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'::'</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">downcase</span>
+137:             <span class="ruby-identifier">h</span>[<span class="ruby-identifier">n</span>] = <span class="ruby-identifier">c</span>
+138:           <span class="ruby-keyword kw">end</span>
+139:           <span class="ruby-identifier">h</span>
+140:         <span class="ruby-keyword kw">end</span>
+141:       )
+142:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="to-s-method" class="method-detail ">
+        <a name="method-c-to_s"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="to-s-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/executioner.rb, line 333</span>
+333:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+334:       <span class="ruby-constant">Help</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>).<span class="ruby-identifier">help_text</span>
+335:     <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="main-method" class="method-detail ">
+        <a name="method-i-main"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">main</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="main-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/executioner.rb, line 79</span>
+79:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">main</span>(*<span class="ruby-identifier">args</span>)
+80:     <span class="ruby-comment cmt">#puts self.class  # TODO: fix help</span>
+81:     <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoCommandError</span>
+82:   <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="option-missing-method" class="method-detail ">
+        <a name="method-i-option_missing"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">option_missing</span><span
+            class="method-args">(opt, argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>
+Override <a
+href="Executioner.html#method-i-option_missing">option_missing</a> if
+needed. This receives the name of the option and the remaining arguments
+list. It must consume any argument it uses from the (begining of) the list.
+</p>
+          
+
+          
+          <div class="method-source-code"
+            id="option-missing-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/executioner.rb, line 88</span>
+88:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">option_missing</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>)
+89:     <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoOptionError</span>, <span class="ruby-identifier">opt</span>
+90:   <span class="ruby-keyword kw">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+
