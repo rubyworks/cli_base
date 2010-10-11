@@ -81,6 +81,8 @@ class Executioner
     raise NoCommandError
   end
 
+  private
+
   # Override option_missing if needed. This receives
   # the name of the option and the remaining arguments
   # list. It must consume any argument it uses from
@@ -126,6 +128,21 @@ class Executioner
     # Executioners don't run, they execute! But...
     alias_method :run, :execute
 
+    # List if subcommands.
+    def subcommands
+      @subcommands ||= (
+        consts = constants - superclass.constants
+        consts.inject({}) do |h, c|
+          c = const_get(c)
+          if Executioner > c
+            n = c.name.split('::').last.downcase
+            h[n] = c
+          end
+          h
+        end
+      )
+    end
+
     # Make sure arguments are an array. If argv is a String,
     # then parse using Shellwords module.
     def parse_arguments(argv)
@@ -148,21 +165,6 @@ class Executioner
       end
 
       return cmd, argv
-    end
-
-    # List if subcommands.
-    def subcommands
-      @subcommands ||= (
-        consts = constants - superclass.constants
-        consts.inject({}) do |h, c|
-          c = const_get(c)
-          if Executioner > c
-            n = c.name.split('::').last.downcase
-            h[n] = c
-          end
-          h
-        end
-      )
     end
 
     #
@@ -233,7 +235,7 @@ class Executioner
       end
     end
 
-    # TODO: this needs some thought concerning character spliting and arguments.
+    # TODO: This needs some thought concerning character spliting and arguments.
     def parse_flags(obj, opt, argv, args)
       x = opt[1..-1]
       c = 0
@@ -279,33 +281,58 @@ class Executioner
       meths.first
     end
 
-    #
-    def description(description=nil)
-      @description = description unless description.nil?
-      @description
+    # Get or set a help header for the command.
+    def header(text=nil)
+      @header = text unless text.nil?
+      @header
     end
 
+    # Get or set a help footer for the command.
+    def footer(text=nil)
+      @footer = text unless text.nil?
+      @footer
+    end
+
+    # Define help information for an option.
     #
+    #   help "this options does blah blah"
+    #   def foo=(val)
+    #     ...
+    #   end
+    #
+    #--
+    # TODO: Consider using annotated comments for this information.
+    #++
     def help(description)
-      @desc = description
+      @help = description
     end
 
     # Hash for storing descriptions.   
     def descriptions
-      @descriptions ||= {}
+      @descriptions ||= (
+        parent = ancestors[1]
+        if Executioner > parent
+          parent.descriptions.dup
+        else
+          {}
+        end
+      )
     end
 
     #
     def method_added(name)
       #name = name.to_s.chomp('?').chomp('=')
-      descriptions[name.to_s] = @desc if @desc
-      @desc = nil
+      descriptions[name.to_s] = @help if @help
+      @help = nil
     end
 
-    alias_method :inspect, :to_s
+    #
+    def inspect
+      name
+    end
 
     #
-    def help_text #to_s
+    def to_s
       Help.new(self).help_text
     end
 

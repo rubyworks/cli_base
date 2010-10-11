@@ -4,11 +4,11 @@ class Executioner
   # output and manpages output.
   class Help
 
-    attr :exe_class
+    attr :cli_class
 
     #
-    def initialize(exe_class)
-      @exe_class = exe_class
+    def initialize(cli_class)
+      @cli_class = cli_class
     end
 
     #alias_method :inspect, :to_s
@@ -24,13 +24,10 @@ class Executioner
 
     #
     def help_text
-      commands = @exe_class.subcommands
+      commands     = @cli_class.subcommands
+      descriptions = @cli_class.descriptions
 
       options  = []
-
-      descriptions = @exe_class.descriptions
-
-      #descs = descriptions.to_a.sort{ |a,b| a[0] <=> b[0] }
 
       descriptions.each do |meth, desc|
         case meth
@@ -39,10 +36,12 @@ class Executioner
         end
       end
 
+      options = options.sort{ |a,b| a[0] <=> b[0] }
+
       s = ''
       s << File.basename($0)
 
-      s << "\n\n" + @exe_class.description
+      s << "\n\n" + @cli_class.header
 
       if !commands.empty?
         s << "\n\nCOMMANDS:\n\n"
@@ -69,6 +68,8 @@ class Executioner
       #  end
       #end
 
+      s << "\n"
+      s << @cli_class.footer if @cli_class.footer
       s << "\n"
       s
     end
