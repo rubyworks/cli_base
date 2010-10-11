@@ -81,8 +81,6 @@ class Executioner
     raise NoCommandError
   end
 
-  private
-
   # Override option_missing if needed. This receives
   # the name of the option and the remaining arguments
   # list. It must consume any argument it uses from
@@ -134,7 +132,7 @@ class Executioner
         consts = constants - superclass.constants
         consts.inject({}) do |h, c|
           c = const_get(c)
-          if Executioner > c
+          if Class === c && Executioner > c
             n = c.name.split('::').last.downcase
             h[n] = c
           end
@@ -276,7 +274,7 @@ class Executioner
     def find_longer_option(obj, char)
       meths = obj.methods.map{ |m| m.to_s }
       meths = meths.select do |m|
-        m.start_with?(k) and (m.end_with?('=') or m.end_with?('!'))
+        m.start_with?(char) and (m.end_with?('=') or m.end_with?('!'))
       end
       meths.first
     end

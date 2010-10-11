@@ -125,6 +125,6 @@ How about an option only.
 How about a non-existant options.
 
   expect Executioner::NoOptionError do
-    cli = MyCLI.run('c1 --foo')
+    MyCLI.run('c1 --foo')
   end
 

@@ -98,7 +98,7 @@ This example mimics the one given in optparse.rb documentation.
 
       # Boolean switch.
       def verbose=(bool)
-        options.verbose = bool)
+        options.verbose = bool
       end
       def verbose?
         @options.verbose
@@ -130,33 +130,31 @@ This example mimics the one given in optparse.rb documentation.
 
 We will run some scenarios on this example to make sure it works.
 
-   cli = ExampleCLI.new
-
-   cli.execute_command('-r=facets')
+   cli = ExampleCLI.execute('-r=facets')
    cli.options.library.assert == ['facets']
 
 Make sure time option parses.
 
-   cli.execute_command('--time=2010-10-10')
+   cli = ExampleCLI.execute('--time=2010-10-10')
    cli.options.time.assert == Time.parse('2010-10-10')
 
 Make sure code lookup words and is limted to the selections provided.
 
-   cli.execute_command('--code=ji')
+   cli = ExampleCLI.execute('--code=ji')
    cli.options.encoding.assert == 'iso-2022-jp'
 
    expect ArgumentError do
-     cli.execute_command('--code=xxx')
+     ExampleCLI.execute('--code=xxx')
    end
 
 Ensure +irs+ is set to an octal number.
 
-   cli.execute_command('-F 32')
+   cli = ExampleCLI.execute('-F 32')
    cli.options.record_separator.assert == 032
 
 Ensure extension begins with dot and inplace is set to true.
 
-   cli.execute_command('--inplace txt')
+   cli = ExampleCLI.execute('--inplace txt')
    cli.options.extension.assert == '.txt'
    cli.options.inplace.assert == true
 
