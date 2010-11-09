@@ -1,4 +1,4 @@
-= Scenario - No Subcommmands
+= No Subcommmands
 
 This example demonstrates using Executioner to create a simple command line
 interface without subcommands.
