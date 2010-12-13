@@ -1,11 +1,14 @@
 --- 
+name   : execute
 title  : Executioner
-suite  : rubyworks
 summary: Killer Commandlines
 contact: Trans <transfire@gmail.com>
 license: Apache 2.0
 authors: [Thomas Sawyer]
-created: 2008-08-08
+
+requires:
+- syckle (build)
+- qed    (test)
 
 description:
   Executioner is an OCM (Object Command Mapper) CLI framework for Ruby.
@@ -17,6 +20,7 @@ resources:
   code: http://github.com/rubyworks/executioner
   mail: http://groups.google.com/group/rubyworks-mailinglist
 
-copyright:
-  Copyright (c) 2010 Thomas Sawyer
+created   : 2008-08-08
+company   : RubyWorks
+copyright : Copyright (c) 2010 Thomas Sawyer
 

@@ -1,16 +1,13 @@
-#!mast -x Syckfile bin lib meta qed test [A-Z]*
+#!mast -x Syckfile -x PROFILE .ruby bin lib meta qed test [A-Z]*
+.ruby
 lib/executioner/errors.rb
 lib/executioner/help.rb
-lib/executioner/meta/data.rb
-lib/executioner/meta/package
-lib/executioner/meta/profile
+lib/executioner/version.rb
+lib/executioner/version.yml
 lib/executioner.rb
-meta/data.rb
-meta/package
-meta/profile
 qed/01_single_command.rdoc
 qed/02_multiple_commands.rdoc
-qed/03_rdoc_example.rdoc
+qed/03_optparse_example.rdoc
 qed/04_help_text.rdoc
 qed/applique/compare.rb
 qed/samples/help.txt
@@ -19,4 +16,5 @@ HISTORY.rdoc
 LICENSE
 README.rdoc
 ROADMAP.rdoc
+VERSION
 EXAMPLE.rdoc
