@@ -1,94 +1,65 @@
-= Executable
+= Executioner
 
 == DESCRIPTION
 
-The Executable mixin is a very quick and and easy
-way to make almost any class usable via a command
-line interface. It simply uses writer methods as
-option setters, and the first command line argument
-as the method to call, with the subsequent arguments
-passed to the method.
-
-
-== FEATURES
-
-* Super easy to use, just mixin.
-* Public writers become options.
-* Public methods become subcommands.
-
-
-== RESOURCES
-
-* http://rubyworks.github.com/executable
-* http://github.com/rubyworks/executable
-
-
-== RELEASE NOTES
-
-Please see HISTORY file.
+Executioner is a very striaght-forward CLI framework for Ruby. A single
+class can define a complete multi-command command line tool using nothing
+more than Ruby's own method definitions.
 
 
 == SYNOPSIS
 
-Simply mixin Executable, then call #execute_command.
+Using Executioner is straight-forward. Simply subclass the `Executioner` base
+class and add methods to handle subcommands and command-line options. A plan
+method corresponds to a subcommand, an writer method (ending in '=') to an
+option and a query method (ending in '?') to a flag. For example, here is a
+simple commandline tool to run a Ruby script.
 
-  class Example
-    include Executable
+    require 'executioner'
 
-    attr_accessor :quiet
+    class RunCLI < Executioner
 
-    attr_accessor :size
+      help "Require LIBRARY before executing your script"
 
-    def bread(*args)
-      ["bread", quiet, size, *args]
+      def require=(lib)
+        require lib
+      end
+      alias :r= :require=
+
+      help "Include PATH in $LOAD_PATH"
+
+      def include=(path)
+        $:.unshift path
+      end
+      alias :I= :incude
+
+      help "Run in DEBUG mode"
+
+      def debug?
+        $DEBUG = true
+      end
+
+      help "Show this message"
+
+      def help?
+        puts self
+        exit
+      end
+      alias :h? :help?
+
+      def main(script)
+        load(script)
+      end
     end
 
-    def butter(*args)
-      ["butter", quiet, size, *args]
-    end
-  end
-
-  example = Example.new
-
-  example.execute!("butter yum")
-  => ["butter", nil, nil, "yum"]
-
-  example.execute!("bread --quiet --size=big")
-  => ["bread", true, "big"]
+For a more detail example see EXAMPLE.rdoc.
 
 
-Notice that Executable requires an equal-sign (<code>=</code>) be used
-when specifying values for non-boolean attributes.
-
-To make the command available on the command line, add an executable
-to your project passing ARGV to the #execute! method.
-
-  #!usr/bin/env ruby
-  require 'example'
-  example = Example.new
-  example.execute!(ARGV)
-
-
-== INSTALL
-
-  $ gem install executable
-
-
-== LEGAL
-
-(Apache 2.0)
+== COPYRIGHT
 
 Copyright (c) 2009 Thomas Sawyer
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this program except in compliance with the License.
-You may obtain a copy of the License at
+Executor is distributed under the terms of the Apache License v2.0.
 
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+Please see LICENSE file for details.
 
