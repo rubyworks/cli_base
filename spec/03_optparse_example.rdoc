@@ -2,8 +2,9 @@
 
 This example mimics the one given in optparse.rb documentation.
 
-    require 'executioner'
+    require 'cli_base'
     require 'ostruct'
+    require 'time'
 
     class ExampleCLI < CLI::Base
 

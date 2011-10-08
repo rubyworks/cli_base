@@ -1,25 +1,15 @@
 ---
-rdoc:
-  service : rdoc
-  format  : "newfish"
-  output  : "site/docs/api"
-  include : nil
-  exclude : ["Rakefile"]
-  extra   : nil
-
 ridoc:
-  output  : ".ri"
-  active  : true
+  output  : ".rdoc"
+  active  : false
 
-dnote:
-  labels  : ~
-  output  : ~
+qed:
+  files: spec/
+  loadpath: lib
 
 qedoc:
-  service : custom
-  cycle   : site
-  document: |
-    system "qedoc -o site/docs/qed -t Executable qed/"
+  title : "CLI::Base"
+  output: SPEC.rdoc
 
 email:
   service : Email
@@ -28,80 +18,28 @@ email:
   mailto  : ruby-talk@ruby-lang.org
   active  : true
 
-grancher:
-  service: grancher
+gem:
   active: true
 
-gemcutter:
-  service: GemCutter
-  active: true
-
-box:
-  service: Box
-  types  : [gem]
-  active : true
-
-ridoc:
-  service: RIDoc
-  include: ~
-  exclude: ~
-  output : ri
-  active : true
-
-rdoc:
-  service : RDoc
-  template: newfish #blackfish
-  include : ~
-  exclude : [ Syckfile ]
-  output  : site/docs/api
-  active  : true
-
-qedoc:
-  service  : Custom
-  cycle    : main
-  document :
-    system "qedoc -t Executioner -o site/docs/qed qed/*.rdoc"
-
-syntax:
-  service  : Syntax
-  loadpath : ~
+minitest:
+  tests    : test/*.rb
+  loadpath: lib
   exclude  : ~
-  active   : false
-
-testrb:
-  service  : testrb
-  tests    : ~
-  exclude  : ~
-  loadpath : ~
   requires : ~
-  live     : false   
-  active   : false
 
 dnote:
-  service  : DNote
-  loadpath : ~
   labels   : ~
   exclude  : [work]
-  output   : ~
-  format   : ~
-  active   : true
+  output   : log/NOTES.rdoc
 
-stats:
-  service  : Stats
-  title    : ~
-  loadpath : ~
-  exclude  : ~
-  output   : ~
-  active   : true
+#locat:
+#  active   : true
 
 vclog:
-  service  : VClog
-  formats  : [json]
-  #layout   : rel    # gnu
-  typed    : false
-  output   : ~
-  active   : false
-
+  active: true
+  output: 
+    - log/CHANGES.rdoc
+    - log/HISTORY.rdoc
 
 #rubyforge do
 #  unixname metadata.name

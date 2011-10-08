@@ -2,7 +2,7 @@
 
 Require Executor library.
 
-  require 'executioner'
+  require 'cli_base'
 
 Setup an example CLI subclass.
 
@@ -55,7 +55,7 @@ The help output,
 
 should be clearly laid out as follows:
 
-  qed
+  $0
 
   This does c1.
 

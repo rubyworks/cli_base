@@ -16,7 +16,7 @@ module CLI
   #
   #     # $ foo remote
   #
-  #     class Remote < Executioner
+  #     class Remote < CLI::Base
   #
   #       # $ foo remote --verbose
   #
@@ -34,7 +34,7 @@ module CLI
   #         @force
   #       end
   #
-  #       def remote=(bool)
+  #       def force=(bool)
   #         @force = bool
   #       end
   #
@@ -125,7 +125,7 @@ module CLI
         return cli
       end
 
-      # Executioners don't run, they execute! But...
+      # CLI::Base classes don't run, they execute! But...
       alias_method :run, :execute
 
       # List if subcommands.
@@ -134,7 +134,7 @@ module CLI
           consts = constants - superclass.constants
           consts.inject({}) do |h, c|
             c = const_get(c)
-            if Class === c && Executioner > c
+            if Class === c && CLI::Base > c
               n = c.name.split('::').last.downcase
               h[n] = c
             end
@@ -189,7 +189,7 @@ module CLI
           when /^-/
             parse_flags(obj, arg, argv, args)
           else
-            #if Executioner === obj
+            #if CLI::Base === obj
             #  if cmd_class = obj.class.subcommands[arg]
             #    cmd  = cmd_class.new(obj)
             #    subc = cmd

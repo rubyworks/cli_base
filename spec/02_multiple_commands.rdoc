@@ -2,7 +2,7 @@
 
 Require CLI::Base class.
 
-  require 'executioner'
+  require 'cli_base'
 
 Setup an example CLI subclass.
 

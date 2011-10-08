@@ -1,9 +1,9 @@
 require 'test/unit'
-require 'executioner'
+require 'cli_base'
 
-class TC_Executioner < Test::Unit::TestCase
+class CLIBaseTestCase < Test::Unit::TestCase
 
-  class MyCommand < Executioner
+  class MyCommand < CLI::Base
     attr_reader :size, :quiet, :file
 
     def initialize

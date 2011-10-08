@@ -1,6 +1,15 @@
 = RELEASE HISTORY
 
-== 0.0.4 / 2010-10-12
+== 0.5.0 / 2011-10-08
+
+The library has been rename to CLI::Base (gem name `cli_base`).
+
+Changes:
+
+* Renamed to CLI::Base.
+
+
+== 0.4.0 / 2010-10-12
 
 Ooo... I found an even better API. Rather than use methods to denote commands,
 the new API uses nested classes.
@@ -10,7 +19,7 @@ Changes:
 * New API!
 
 
-== 0.0.3 / 2010-09-12
+== 0.3.0 / 2010-09-12
 
 The most significant change is the use bang methods (foo!) for option flags.
 
@@ -19,7 +28,7 @@ Changes:
 * Allow bang methods for option flags.
 
 
-== 0.0.2 / 2010-03-02
+== 0.2.0 / 2010-03-02
 
 Initial (non-public) release. Executioner is a rebranding of older library
 called TieClip. TieClip has moved in a completely different direction,
