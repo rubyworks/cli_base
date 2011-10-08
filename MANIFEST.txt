@@ -1,9 +1,18 @@
-#!mast -x Rakefile lib meta test [A-Z]*
-lib/executable.rb
-meta/license/Apache2.txt
-test/test_executable.rb
-Profile
+#!mast .ruby .yardopts bin lib spec test [A-Z]*.*
+.ruby
+lib/cli_base/errors.rb
+lib/cli_base/help.rb
+lib/cli_base/version.rb
+lib/cli_base.rb
+spec/01_single_command.rdoc
+spec/02_multiple_commands.rdoc
+spec/03_optparse_example.rdoc
+spec/04_help_text.rdoc
+spec/applique/compare.rb
+spec/samples/help.txt
+test/test_cli_base.rb
+HISTORY.rdoc
 README.rdoc
-History.rdoc
-Version
-NOTICE.rdoc
+ROADMAP.rdoc
+COPYING.rdoc
+EXAMPLE.rdoc

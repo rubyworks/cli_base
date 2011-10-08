@@ -26,13 +26,13 @@ load_path:
 - lib
 extra:
   contact: trans <transfire@gmail.com>
-  manifest: MANIFEST
+  manifest: MANIFEST.txt
 source: []
 alternatives: []
 revision: 0
 name: cli_base
 title: CLI::Base
-version: 0.1.0
+version: 0.5.0
 summary: Command line tools, meet your Executioner!
 created: '2008-08-08'
 description: Think of CLI::Base as a COM, a Commandline Object Mapper, in much the

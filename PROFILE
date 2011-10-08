@@ -1,6 +1,6 @@
 ---
 name   : cli_base
-version: 0.1.0
+version: 0.5.0
 
 title  : CLI::Base
 summary: Command line tools, meet your Executioner!
