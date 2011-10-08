@@ -1,90 +1,143 @@
---- !ruby/object:Gem::Specification 
-name: executable
-version: !ruby/object:Gem::Version 
-  hash: 19
-  prerelease: false
-  segments: 
-  - 1
-  - 1
-  - 0
-  version: 1.1.0
-platform: ruby
-authors: 
-- Thomas Sawyer
-autorequire: 
-bindir: bin
-cert_chain: []
+# encoding: utf-8
 
-date: 2011-04-21 00:00:00 -04:00
-default_executable: 
-dependencies: 
-- !ruby/object:Gem::Dependency 
-  name: turn
-  prerelease: false
-  requirement: &id001 !ruby/object:Gem::Requirement 
-    none: false
-    requirements: 
-    - - ">="
-      - !ruby/object:Gem::Version 
-        hash: 3
-        segments: 
-        - 0
-        version: "0"
-  type: :development
-  version_requirements: *id001
-description: The Executable mixin is a very quick and and easy way to make almost any class usable via a command line interface. It simply uses writer methods as option setters, and the first command line argument as the method to call, with the subsequent arguments passed to the method.
-email: transfire@gmail.com
-executables: []
+require 'yaml'
 
-extensions: []
+Gem::Specification.new do |gemspec|
 
-extra_rdoc_files: 
-- README.rdoc
-files: 
-- lib/executable.rb
-- meta/license/Apache2.txt
-- test/test_executable.rb
-- Profile
-- README.rdoc
-- History.rdoc
-- Version
-- NOTICE.rdoc
-has_rdoc: true
-homepage: http://rubyworks.github.com/executable
-licenses: 
-- Apache 2.0
-post_install_message: 
-rdoc_options: 
-- --title
-- Executable API
-- --main
-- README.rdoc
-require_paths: 
-- lib
-required_ruby_version: !ruby/object:Gem::Requirement 
-  none: false
-  requirements: 
-  - - ">="
-    - !ruby/object:Gem::Version 
-      hash: 3
-      segments: 
-      - 0
-      version: "0"
-required_rubygems_version: !ruby/object:Gem::Requirement 
-  none: false
-  requirements: 
-  - - ">="
-    - !ruby/object:Gem::Version 
-      hash: 3
-      segments: 
-      - 0
-      version: "0"
-requirements: []
+  manifest = Dir.glob('manifest{,.txt}', File::FNM_CASEFOLD).first
 
-rubyforge_project: executable
-rubygems_version: 1.3.7
-signing_key: 
-specification_version: 3
-summary: Any class, a command-line interface.
-test_files: 
-- test/test_executable.rb
+  scm = case
+        when File.directory?('.git')
+          :git
+        end
+
+  files = case
+          when manifest
+           File.readlines(manifest).
+             map{ |line| line.strip }.
+             reject{ |line| line.empty? || line[0,1] == '#' }
+          when scm == :git
+           `git ls-files -z`.split("\0")
+          else
+            Dir.glob('{**/}{.*,*}')  # TODO: be more specific using standard locations ?
+          end.select{ |path| File.file?(path) }
+
+  patterns = {
+    :bin_files  => 'bin/*',
+    :lib_files  => 'lib/{**/}*.rb',
+    :ext_files  => 'ext/{**/}extconf.rb',
+    :doc_files  => '*.{txt,rdoc,md,markdown,tt,textile}',
+    :test_files => '{test/{**/}*_test.rb,spec/{**/}*_spec.rb}'
+  }
+
+  glob_files = lambda { |pattern|
+    Dir.glob(pattern).select { |path|
+      File.file?(path) && files.include?(path)
+    }
+  }
+
+  #files = glob_files[patterns[:files]]
+
+  executables = glob_files[patterns[:bin_files]].map do |path|
+                  File.basename(path)
+                end
+
+  extensions = glob_files[patterns[:ext_files]].map do |path|
+                 File.basename(path)
+               end
+
+  metadata = YAML.load_file('.ruby')
+
+  # build-out the gemspec
+
+  case metadata['revision']
+  when 0
+    gemspec.name        = metadata['name']
+    gemspec.version     = metadata['version']
+    gemspec.summary     = metadata['summary']
+    gemspec.description = metadata['description']
+
+    metadata['authors'].each do |author|
+      gemspec.authors << author['name']
+
+      if author.has_key?('email')
+        if gemspec.email
+          gemspec.email << author['email']
+        else
+          gemspec.email = [author['email']]
+        end
+      end
+    end
+
+    gemspec.licenses = metadata['licenses']
+
+    metadata['requirements'].each do |req|
+      name    = req['name']
+      version = req['version']
+      groups  = req['groups'] || []
+
+      #development = req['development']
+      #if development
+      #  # populate development dependencies
+      #  if gemspec.respond_to?(:add_development_dependency)
+      #    gemspec.add_development_dependency(name,*version)
+      #  else
+      #    gemspec.add_dependency(name,*version)
+      #  end
+      #else
+      #  # populate runtime dependencies  
+      #  if gemspec.respond_to?(:add_runtime_dependency)
+      #    gemspec.add_runtime_dependency(name,*version)
+      #  else
+      #    gemspec.add_dependency(name,*version)
+      #  end
+      #end
+
+      if groups.empty? or groups.include?('runtime')
+        # populate runtime dependencies  
+        if gemspec.respond_to?(:add_runtime_dependency)
+          gemspec.add_runtime_dependency(name,*version)
+        else
+          gemspec.add_dependency(name,*version)
+        end
+      else
+        # populate development dependencies
+        if gemspec.respond_to?(:add_development_dependency)
+          gemspec.add_development_dependency(name,*version)
+        else
+          gemspec.add_dependency(name,*version)
+        end
+      end
+    end
+
+    # convert external dependencies into a requirements
+    if metadata['external_dependencies']
+      ##gemspec.requirements = [] unless metadata['external_dependencies'].empty?
+      metadata['external_dependencies'].each do |req|
+        gemspec.requirements << req.to_s
+      end
+    end
+
+    # determine homepage from resources
+    homepage = metadata['resources'].find{ |key, url| key =~ /^home/ }
+    gemspec.homepage = homepage.last if homepage
+
+    gemspec.require_paths        = metadata['load_path'] || ['lib']
+    gemspec.post_install_message = metadata['install_message']
+
+    # RubyGems specific metadata
+    gemspec.files       = files
+    gemspec.extensions  = extensions
+    gemspec.executables = executables
+
+    if Gem::VERSION < '1.7.'
+      gemspec.default_executable = gemspec.executables.first
+    end
+
+    gemspec.test_files = glob_files[patterns[:test_files]]
+
+    unless gemspec.files.include?('.document')
+      gemspec.extra_rdoc_files = glob_files[patterns[:doc_files]]
+    end
+  end
+end
