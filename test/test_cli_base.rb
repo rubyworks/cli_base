@@ -16,8 +16,12 @@ class CLIBaseTestCase < Test::Unit::TestCase
     #  @quiet = bool ? true : bool
     #end
 
+    def quiet=(bool)
+      @quiet = bool
+    end
+
     def quiet?
-      @quiet = true
+      @quiet  
     end
 
     #use :size, "what size will it be?", :type => :integer, :default => '0'
@@ -40,7 +44,8 @@ class CLIBaseTestCase < Test::Unit::TestCase
       @file = fname
     end
 
-    def command_missing
+    #
+    def main
     end
 
     #def call(*args)
@@ -49,23 +54,19 @@ class CLIBaseTestCase < Test::Unit::TestCase
   end
 
 
-  def setup
-    @mc = MyCommand.new
-  end
-
   def test_boolean_optiion
-    @mc.run('--quiet')
-    assert(@mc.quiet)
+    mc = MyCommand.execute('--quiet')
+    assert(mc.quiet?)
   end
 
   def test_integer_optiion
-    @mc.run('--size=4')
-    assert_equal(4, @mc.size)
+    mc = MyCommand.execute('--size=4')
+    assert_equal(4, mc.size)
   end
 
   def test_default_value
-    @mc.run('')
-    assert_equal('hey.txt', @mc.file)
+    mc = MyCommand.execute('')
+    assert_equal('hey.txt', mc.file)
   end
 
   def usage_output
