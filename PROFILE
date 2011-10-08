@@ -3,14 +3,16 @@ name   : cli_base
 version: 0.1.0
 
 title  : CLI::Base
-summary: Command line tools, meet your Executioner
+summary: Command line tools, meet your Executioner!
 contact: trans <transfire@gmail.com>
 created: 2008-08-08
 
 description:
-  Think of CLI::Base as a COM, a Command-line Object Mapper,
+  Think of CLI::Base as a COM, a Commandline Object Mapper,
   in much the same way that ActiveRecord::Base is an ORM,
-  an Object Relational Mapper.
+  an Object Relational Mapper. A subclass of the CLI::Base
+  can define a complete command line tool using nothing more
+  than Ruby's own method definitions.
 
 authors:
   - Thomas Sawyer
@@ -18,6 +20,7 @@ authors:
 resources:
   home: http://rubyworks.github.com/cli_base
   code: http://github.com/rubyworks/cli_base
+  mail: http://groups.google.com/group/rubyworks-mailinglist
 
 repositories:
   upstream: git://github.com/rubyworks/cli_base.git
@@ -26,6 +29,10 @@ requires:
   - qed (test)
 
 organization: RubyWorks
+
+authors: 
+  - Thomas Sawyer <transfire@gmail.com>
+
 copyrights  :
   - (c) 2008 Thomas Sawyer (BSD-2-Clause)
 

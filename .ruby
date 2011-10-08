@@ -1,33 +1,43 @@
---- 
-name: executable
-spec_version: 1.0.0
-repositories: 
-  public: git://github.com/rubyworks/cliable.git
-title: Executable
-requires: 
-- group: 
+---
+authors:
+- name: Thomas Sawyer
+  email: transfire@gmail.com
+copyrights:
+- holder: Thomas Sawyer
+  year: '2008'
+  license: BSD-2-Clause
+replacements: []
+conflicts: []
+requirements:
+- name: qed
+  groups:
   - test
-  name: turn
-  version: 0+
-resources: 
-  code: http://github.com/rubyworks/executable
-  home: http://rubyworks.github.com/executable
-manifest: 
-- lib/executable.rb
-- meta/license/Apache2.txt
-- test/test_executable.rb
-- Profile
-- README.rdoc
-- History.rdoc
-- Version
-- NOTICE.rdoc
-version: 1.1.0
-licenses: 
-- Apache 2.0
-copyright: Copyright (c) 2008 Thomas Sawyer
-description: The Executable mixin is a very quick and and easy way to make almost any class usable via a command line interface. It simply uses writer methods as option setters, and the first command line argument as the method to call, with the subsequent arguments passed to the method.
-summary: Any class, a command-line interface.
-authors: 
-- Thomas Sawyer
-collection: RubyWorks
-created: 2008-08-08
+  development: true
+dependencies: []
+repositories:
+- uri: git://github.com/rubyworks/cli_base.git
+  scm: git
+  name: upstream
+resources:
+  home: http://rubyworks.github.com/cli_base
+  code: http://github.com/rubyworks/cli_base
+  mail: http://groups.google.com/group/rubyworks-mailinglist
+load_path:
+- lib
+extra:
+  contact: trans <transfire@gmail.com>
+  manifest: MANIFEST
+source: []
+alternatives: []
+revision: 0
+name: cli_base
+title: CLI::Base
+version: 0.1.0
+summary: Command line tools, meet your Executioner!
+created: '2008-08-08'
+description: Think of CLI::Base as a COM, a Commandline Object Mapper, in much the
+  same way that ActiveRecord::Base is an ORM, an Object Relational Mapper. A subclass
+  of the CLI::Base can define a complete command line tool using nothing more than
+  Ruby's own method definitions.
+organization: RubyWorks
+date: '2011-10-08'

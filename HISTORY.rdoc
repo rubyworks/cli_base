@@ -1,35 +1,32 @@
 = RELEASE HISTORY
 
-== 1.1.0 / 2011-04-21
+== 0.0.4 / 2010-10-12
 
-This release simplifies Exectuable, removing the #option_missing method
-and using the standard #method_missing callback instead. Along with this
-the special error class, +NoOptionError+, has been removed. This release
-also fixes an issue with inconsistant arguments being passed to the callback.
-Finally it renames the #execute_command method to simple #execute!.
+Ooo... I found an even better API. Rather than use methods to denote commands,
+the new API uses nested classes.
 
 Changes:
 
-* Name Changes
-
-  * Renamed `#execute_command` method to `#execute!`.
-
-* Deprecations
-
-  * Rely on #method_missing callback instead of special #option_missing method.
-  * The +NoOptionError+ exceotion class is no longer needed because of above.
-
-* Bug Fixes
-
-  * The #method_missing callback takes the value of the option being set.
+* New API!
 
 
-== 1.0.0 / 2011-04-15
+== 0.0.3 / 2010-09-12
 
-This is the initialize release of Executable (as a stand alone project).
-Executable is a mixin that can turn any class into an commandline interface.
+The most significant change is the use bang methods (foo!) for option flags.
 
-* 1 Major Enhancement
+Changes:
 
-  * Birthday!
+* Allow bang methods for option flags.
+
+
+== 0.0.2 / 2010-03-02
+
+Initial (non-public) release. Executioner is a rebranding of older library
+called TieClip. TieClip has moved in a completely different direction,
+so Executioner was create to preserve and continue development of it's
+design elements.
+
+Changes:
+
+* Happy Birthday!
 
