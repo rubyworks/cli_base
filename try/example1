@@ -1,19 +1,21 @@
-# Example from OptionParser
-#
-# Here is an example Executioner subclass that mimics the example
-# provided in documentation for Ruby built-in OptionParser
-# (see {here}[http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html]).
-#
-# The only signifficant difference in capability between OptionParser and Executioner
-# is that Executioner does not support optional switch arguments. These can easily
-# lead to malformed command-lines, so they were let out of Executioners specifcation.
+#!/usr/bin/env ruby
 
 require 'cli/base'
 require 'ostruct'
 
-class ExampleCLI < CLI::Base
+# Example command-line interface given by OptionParser.
+#
+# Here is an example CLI::Base subclass that mimics the example
+# provided in documentation for Ruby built-in OptionParser.
+#
+# The only signifficant difference in capability between OptionParser and 
+# CLI::Base is that CLI::Base does not support optional switch arguments.
+# These can easily lead to malformed command-lines, so they were let out
+# of CLI::Base's specifcation.
+#
+# @see http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html
 
-  header "Example CLI::Base commmand"
+class Example1 < CLI::Base
 
   CODES = %w[iso-2022-jp shift_jis euc-jp utf8 binary]
   CODE_ALIASES = { "jis" => "iso-2022-jp", "sjis" => "shift_jis" }
@@ -78,6 +80,9 @@ class ExampleCLI < CLI::Base
   # the shortest unambiguous text.
   CODE_LIST = (CODE_ALIASES.keys + CODES)
 
+  # This is how to override default help text.
+  help.option(:code, "Select encoding (#{CODE_LIST})")
+
   # Select encoding (#{CODE_LIST}).
   def code=(code)
     codes = CODE_LIST.select{ |x| /^#{code}/ =~ x }
@@ -106,7 +111,7 @@ class ExampleCLI < CLI::Base
   # Show this message.
   # No argument, shows at tail.  This will print an options summary.
   def help!
-    puts self.class.to_s
+    puts cli_help.text(__FILE__)
     exit
   end
 
@@ -117,6 +122,9 @@ class ExampleCLI < CLI::Base
     exit
   end
 
+  # Add a footer to built-in help.
+  help.footer "Copyright (c) Someone Else. All Rights Reserved."
+
   #
   def main
     # ... main procedure here ...
@@ -124,4 +132,4 @@ class ExampleCLI < CLI::Base
   end
 end
 
-ExampleCLI.execute
+Example1.execute

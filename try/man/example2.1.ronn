@@ -1,0 +1,15 @@
+subcmds.rb(1) example cli using manpage
+=======================================
+
+## SUBCOMMANDS
+
+  * foo - foo does waht foo does
+
+## OPTIONS
+
+  * `--verbose` - do it loudly
+
+## SEE ALSO
+
+exec(1)
+

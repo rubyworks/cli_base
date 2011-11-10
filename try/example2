@@ -1,0 +1,27 @@
+require 'cli/base'
+
+# This is an example command-line with subcommands.
+class Example2 < CLI::Base
+
+  # Do it loudly.
+  attr_accessor :verbose
+  def verbose?; @verbose; end
+
+  # Apply the fooey.
+  class Foo < self
+
+    # Force it ot happen.
+    attr_accessor :force
+    def force?; @force; end
+  end
+
+  def help!
+    cli_help.show_help
+  end
+
+  def main
+  end
+
+end
+
+Example2.execute
