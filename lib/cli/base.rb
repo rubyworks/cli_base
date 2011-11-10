@@ -77,6 +77,7 @@ module CLI
     require 'cli/errors'
     require 'cli/parser'
     require 'cli/help'
+    require 'cli/config'
 
     #
     def main(*args)
@@ -96,6 +97,8 @@ module CLI
 
       # Helper method for creating switch attributes.
       #
+      # This is equivalent to:
+      #
       #   def name=(val)
       #     @name = val
       #   end
@@ -113,6 +116,9 @@ module CLI
         }
       end
 
+      # Run the command.
+      #
+      # @param argv [Array] command-line arguments
       #
       def execute(argv=ARGV)
         cli, args = parser.parse(argv)
@@ -123,7 +129,15 @@ module CLI
       # CLI::Base classes don't run, they execute! But...
       alias_method :run, :execute
 
+      # Command configuration options.
       #
+      # @todo: This isn't used yet. Eventually the idea is to allow
+      #   some additional flexibility in the parser behavior.
+      def config
+        @config ||= Config.new
+      end
+
+      # The parser for this command.
       def parser
         @parser ||= Parser.new(self)
       end
@@ -138,46 +152,26 @@ module CLI
         @help ||= Help.new(self)
       end
 
-      # Get or set a help banner for the command.
-      def banner(text=nil)
-        help.banner(text)
-      end
-      alias_method :header, :banner
-
-      # Get or set a help footer for the command.
-      def footer(text=nil)
-        help.footer(text)
-      end
-
-      # Hash for storing descriptions.   
-      #def descriptions
-      #  @descriptions ||= (
-      #    parent = ancestors[1]
-      #    if CLI::Base > parent
-      #      parent.descriptions.dup
-      #    else
-      #      {}
-      #    end
-      #  )
-      #end
-
-      #
-      #def method_added(name)
-      #  #name = name.to_s.chomp('?').chomp('=')
-      #  descriptions[name.to_s] = @help if @help
-      #  @help = nil
-      #end
-
       #
       def inspect
         name
       end
 
+      # When inherited, setup up the +file+ and +line+ of the 
+      # subcommand via +caller+. If for some odd reason this
+      # does not work then manually use +setup+ method.
       #
-      def to_s
-        help.help_text
+      def inherited(subclass)
+        file, line, _ = *caller.first.split(':')
+        file = File.expand_path(file)
+        subclass.help.setup(file,line.to_i)
       end
 
+    end
+
+    # Access the help instance of the class of the command object.
+    def cli_help
+      self.class.help
     end
 
   end
