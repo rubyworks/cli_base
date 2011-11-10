@@ -9,6 +9,7 @@ qed:
 
 qedoc:
   title : "CLI::Base"
+  files : spec/
   output: SPEC.rdoc
 
 email:
