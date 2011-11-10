@@ -1,9 +1,10 @@
-= Example from OptionParser
+# Example from OptionParser
 
 Here is an example Executioner subclass that mimics the example
 provided in documentation for Ruby built-in OptionParser
 (see {here}[http://ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html]).
 
+```ruby
     require 'executioner'
     require 'ostruct'
 
@@ -130,6 +131,7 @@ provided in documentation for Ruby built-in OptionParser
         # ... main procedure here ...
       end
     end
+```
 
 The only signifficant difference in capability between OptionParser and Executioner
 is that Executioner does not support optional switch arguments. These can easily
