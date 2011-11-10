@@ -144,6 +144,9 @@ module CLI
       banner
     end
 
+    # TODO: Maybe default description should always come from `main`
+    # instead of the the class comment. 
+
     # Description of command in printable form.
     # But will return +nil+ if there is no description.
     #
@@ -153,6 +156,8 @@ module CLI
         @description
       elsif @file
         get_above_comment(@file, @line).join("\n")
+      elsif desc = method_descriptions['main']
+        desc
       else
         nil
       end
@@ -227,6 +232,13 @@ module CLI
 
     #
     def option_descriptions
+      @option_descriptions ||= method_descriptions
+    end
+
+  private
+
+    #
+    def method_descriptions
       h = {}
       c = method_chart(@cli_class)
       c.each do |o,d|
@@ -234,8 +246,6 @@ module CLI
       end
       h
     end
-
-  private
 
     # Produce an index of method to method description.
     #

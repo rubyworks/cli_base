@@ -78,6 +78,7 @@ module CLI
     require 'cli/parser'
     require 'cli/help'
     require 'cli/config'
+    require 'cli/utils'
 
     #
     def main(*args)
