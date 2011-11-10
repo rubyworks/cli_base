@@ -8,40 +8,33 @@ Setup an example CLI subclass.
 
   class MyCLI < CLI::Base
 
-    help "This is global option -g."
-
+    # This is global option -g.
     def g=(val)
     end
 
-    # help "This does c1."
-
+    # This does c1.
     class C1 < self
 
-      header "This does c1."
+      #help.header "This does c1."
 
-      help "This is option --o1 for c1."
-
+      # This is option --o1 for c1.
       def o1=(value)
       end
 
-      help "This is option --o2 for c1."
-
+      # This is option --o2 for c1.
       def o2=(value)
       end
 
     end
 
-    # help "This does c2."
-
+    # This does c2.
     class C2 < self
 
-      help "This is option --o1 for c2."
-
+      # This is option --o1 for c2.
       def o1=(value)
       end
 
-      help "This is option --o2 for c2."
-
+      # This is option --o2 for c2.
       def o2=(bool)
       end
 
@@ -51,16 +44,15 @@ Setup an example CLI subclass.
 
 The help output,
 
-  @out = MyCLI::C1.to_s
+  @out = MyCLI::C1.help.to_s
 
 should be clearly laid out as follows:
 
-  $0
+  $0 [options...] [subcommand]
 
   This does c1.
 
-  OPTIONS:
-
+  OPTIONS
      -g               This is global option -g.
     --o1              This is option --o1 for c1.
     --o2              This is option --o2 for c1.
