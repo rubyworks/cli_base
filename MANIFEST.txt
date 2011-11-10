@@ -1,18 +1,17 @@
 #!mast .ruby .yardopts bin lib spec test [A-Z]*.*
 .ruby
-lib/cli_base/errors.rb
-lib/cli_base/help.rb
-lib/cli_base/version.rb
+lib/cli/base.rb
+lib/cli/config.rb
+lib/cli/errors.rb
+lib/cli/help.rb
+lib/cli/parser.rb
+lib/cli/utils.rb
+lib/cli/version.rb
 lib/cli_base.rb
-spec/01_single_command.rdoc
-spec/02_multiple_commands.rdoc
-spec/03_optparse_example.rdoc
-spec/04_help_text.rdoc
-spec/applique/compare.rb
-spec/samples/help.txt
 test/test_cli_base.rb
 HISTORY.rdoc
+SPEC.rdoc
 README.rdoc
 ROADMAP.rdoc
 COPYING.rdoc
-EXAMPLE.rdoc
+EXAMPLE.md
