@@ -1,5 +1,7 @@
 module CLI
 
+  require 'cli/core_ext'
+
   # Encpsulates command help for deefining and displaying well formated help
   # output in plain text or via manpages if found.
   class Help
