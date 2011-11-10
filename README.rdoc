@@ -1,65 +1,68 @@
 = CLI::Base
 
+{Website}[http://rubyworks.github.com/cli_base] |
+{Source Code}[http://github.com/rubyworrks/cli_base] |
+{Report Issue}[http://github.com/rubyworrks/cli_base/features] |
+{#rubyworks}[irc://irc.freenode.org/rubyworks]
+
+{<img src="http://travis-ci.org/rubyworks/cli_base.png" />}[http://travis-ci.org/rubyworks/cli_base]
+
+
 == DESCRIPTION
 
-CLI::Base is a very striaght-forward CLI framework for Ruby. A single
-class can define a complete multi-command command line tool using nothing
-more than Ruby's own method definitions.
+CLI::Base is a very striaght-forward CLI framework for Ruby. CLI::Base is
+a *COM* Command-to-Object Mapping library. A command line tool can be defined
+using nothing more than Ruby's own standard syntax. No special DSL is required. 
 
 
 == SYNOPSIS
 
 Using CLI::Base is straight-forward. Simply subclass the `CLI::Base` base
-class and add methods to handle subcommands and command-line options. A plan
-method corresponds to a subcommand, an writer method (ending in '=') to an
-option and a query method (ending in '?') to a flag. For example, here is a
-simple commandline tool to run a Ruby script.
+class and add methods to handle command-line options. Writer methods 
+(those ending in '=') coorepsond to an option and a query method (ending in '?')
+marks an option a flag. For example, here is a simple commandline tool to run
+a Ruby script.
 
-    require 'executioner'
+    require 'cli/base'
 
     class RunCLI < CLI::Base
-
-      help "Require LIBRARY before executing your script"
-
+      # Require LIBRARY before executing your script.
       def require=(lib)
         require lib
       end
       alias :r= :require=
 
-      help "Include PATH in $LOAD_PATH"
-
+      # Include PATH in $LOAD_PATH.
       def include=(path)
         $:.unshift path
       end
       alias :I= :incude
 
-      help "Run in DEBUG mode"
-
+      # Run in DEBUG mode.
       def debug?
         $DEBUG = true
       end
 
-      help "Show this message"
-
+      # Show this message.
       def help?
         puts self
         exit
       end
       alias :h? :help?
 
+      # Run the command.
       def main(script)
         load(script)
       end
     end
 
-For a more detail example see EXAMPLE.rdoc.
+For a more detail example see EXAMPLE.md.
 
 
-== COPYRIGHT
+== COPYRIGHTS
 
-Copyright (c) 2009 Thomas Sawyer
+Copyright (c) 2009 Rubyworks.
 
 This program is distributed under the terms of the **BSD-2-Clause** license.
 
 Please see COPYING.rdoc file for details.
-

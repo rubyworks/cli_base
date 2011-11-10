@@ -8,9 +8,8 @@ provided in documentation for Ruby built-in OptionParser
     require 'executioner'
     require 'ostruct'
 
-    class ExampleCLI < Executioner
-
-      header "Example of Executioner CLI"
+    # Example of CLI::base
+    class ExampleCLI < CLI::Base
 
       CODES = %w[iso-2022-jp shift_jis euc-jp utf8 binary]
       CODE_ALIASES = { "jis" => "iso-2022-jp", "sjis" => "shift_jis" }
@@ -38,8 +37,7 @@ provided in documentation for Ruby built-in OptionParser
       end
       alias :r= :require=
 
-      help "Edit ARGV files in place (make backup if EXTENSION supplied)"
-
+      # Edit ARGV files in place (make backup if EXTENSION supplied)
       def inplace=(ext)
         options.inplace = true
         options.extension = ext
@@ -47,31 +45,27 @@ provided in documentation for Ruby built-in OptionParser
       end
       alias :i= :inplace=
 
-      help "Delay N seconds before executing"
-
-      # Cast 'delay' argument to a Float.
+      # Delay N seconds before executing.
+      # Casts 'delay' argument to a Float.
       def delay=(n)
         options.delay = n.to_float
       end
 
-      help "Begin execution at given time"
-
-      # Cast 'time' argument to a Time object.
+      # Begin execution at given time.
+      # Casts 'time' argument to a Time object.
       def time=(time)
         options.time = Time.parse(time)
       end
       alias :t= :time=
 
-      help "Specify record separator (default \\0)"
-
-      # Cast to octal integer.
+      # Specify record separator (default \\0)
+      # Casts to octal integer.
       def irs=(octal)
         options.record_separator = octal.to_i(8)
       end
       alias :F= :irs=
 
-      help "Example 'list' of arguments"
-
+      # Example 'list' of arguments.
       # List of arguments.
       def list=(args)
         options.list = list.split(',')
@@ -82,8 +76,10 @@ provided in documentation for Ruby built-in OptionParser
       # the shortest unambiguous text.
       CODE_LIST = (CODE_ALIASES.keys + CODES)
 
-      help "Select encoding (#{CODE_LIST})"
+      # This is how you override default help.
+      help.option(:code, "Select encoding (#{CODE_LIST})")
 
+      # Select encoding.
       def code=(code)
         codes = CODE_LIST.select{ |x| /^#{code}/ =~ x }
         codes = codes.map{ |x| CODE_ALIASES.key?(x) ? CODE_ALIASES[x] : x }.uniq
@@ -91,16 +87,14 @@ provided in documentation for Ruby built-in OptionParser
         options.encoding = codes.first
       end
 
-      help "Select transfer type (text, binary, auto)"
-
+      # Select transfer type (text, binary, auto).
       # Optional argument with keyword completion.
       def type=(type)
         raise ArgumentError unless %w{text binary auto}.include(type.downcase)
         options.transfer_type = type.downcase
       end
 
-      help "Run verbosely"
-
+      # Run verbosely.
       # Boolean switch.
       def verbose=(bool)
         options.verbose = bool
@@ -111,16 +105,14 @@ provided in documentation for Ruby built-in OptionParser
       alias :v= :verbose=
       alias :v? :verbose?
 
-      help "Show this message"
-
+      # Show this message.
       # No argument, shows at tail.  This will print an options summary.
       def help!
         puts self
         exit
       end
 
-      help "Show version"
-
+      # Show version.
       # Another typical switch to print the version.
       def version!
         puts VERSION
@@ -129,8 +121,11 @@ provided in documentation for Ruby built-in OptionParser
 
       def main
         # ... main procedure here ...
+        p options
       end
     end
+
+    ExampleCLI.execute
 ```
 
 The only signifficant difference in capability between OptionParser and Executioner
