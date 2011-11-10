@@ -14,6 +14,9 @@ CLI::Base is a very striaght-forward CLI framework for Ruby. CLI::Base is
 a *COM* Command-to-Object Mapping library. A command line tool can be defined
 using nothing more than Ruby's own standard syntax. No special DSL is required. 
 
+IMPORTANT! CLI::Base's help feature is Ruby 1.9+ only. It does NOT support
+1.8.7 or older.
+
 
 == SYNOPSIS
 
