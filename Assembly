@@ -1,46 +1,37 @@
 ---
-ridoc:
-  output  : ".rdoc"
-  active  : false
-
 qed:
-  files: spec/
-  loadpath: lib
+  files: demo
 
 qedoc:
-  title : "CLI::Base"
-  files : spec/
-  output: SPEC.rdoc
+  title : "CLI::Base Demonstrandum"
+  files : demo
+  output: DEMONSTRANDUM.rdoc
 
 email:
-  service : Email
-  file    : ~
-  subject : ~
-  mailto  : ruby-talk@ruby-lang.org
-  active  : true
+  mailto:
+    - ruby-talk@ruby-lang.org
+    - rubyworks-mailinglist@googlegroups.com
 
 gem:
   active: true
 
 minitest:
-  tests    : test/*.rb
+  tests: test/*.rb
   loadpath: lib
-  exclude  : ~
-  requires : ~
 
 dnote:
-  labels   : ~
-  exclude  : [work]
-  output   : log/NOTES.rdoc
+  labels: ~
+  output: NOTES.rdoc
 
 #locat:
-#  active   : true
+#  output: log/locat.html
+#  active: true
 
 vclog:
-  active: true
   output: 
     - log/CHANGES.rdoc
     - log/HISTORY.rdoc
+  active: false
 
 #rubyforge do
 #  unixname metadata.name
