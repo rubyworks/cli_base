@@ -80,18 +80,25 @@ module CLI
     require 'cli/config'
     require 'cli/utils'
 
+    # TODO: Should #main be called #call instead?
+
     #
     def main(*args)
       #puts self.class  # TODO: fix help
       raise NoCommandError
     end
 
-    # Override option_missing if needed. This receives
-    # the name of the option and the remaining arguments
-    # list. It must consume any argument it uses from
-    # the (begining of) the list.
+    # Override option_missing if needed. This receives the name of the option
+    # and the remaining argumentslist. It must consume any arguments it uses
+    # from the begining of the list (i.e. in-place manipulation).
+    #
     def option_missing(opt, argv)
       raise NoOptionError, opt
+    end
+
+    # Access the help instance of the class of the command object.
+    def cli_help
+      self.class.help
     end
 
     class << self
@@ -168,11 +175,6 @@ module CLI
         subclass.help.setup(file,line.to_i)
       end
 
-    end
-
-    # Access the help instance of the class of the command object.
-    def cli_help
-      self.class.help
     end
 
   end

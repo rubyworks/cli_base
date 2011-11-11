@@ -10,8 +10,8 @@ module CLI
     def initialize(cli_class)
       @cli_class = cli_class
 
-      @banner  = nil
-      @footer  = nil
+      @usage  = nil
+      @footer = nil
 
       @options = {}
       @subcmds = {}
@@ -37,16 +37,16 @@ module CLI
       @name
     end
 
-    # Get or set command banner.
-    def banner(text=nil)
-      @banner ||= "Usage: " + File.basename($0) + ' [options...] [subcommand]'
-      @banner = text unless text.nil?
-      @banner
+    # Get or set command usage.
+    def usage(text=nil)
+      @usage ||= "Usage: " + File.basename($0) + ' [options...] [subcommand]'
+      @usage = text unless text.nil?
+      @usage
     end
 
-    # Set command banner.
-    def banner=(text)
-      @banner = text
+    # Set command usage.
+    def usage=(text)
+      @usage = text
     end
 
     # Get or set command description.
@@ -131,7 +131,7 @@ module CLI
     #
     def text(file=nil)
       s = []
-      s << text_banner
+      s << text_usage
       s << text_description
       s << text_subcommands
       s << text_options
@@ -139,13 +139,13 @@ module CLI
       s.compact.join("\n\n")
     end
 
-    # Command usage banner.
-    def text_banner
-      banner
+    # Command usage.
+    def text_usage
+      usage
     end
 
     # TODO: Maybe default description should always come from `main`
-    # instead of the the class comment. 
+    # instead of the the class comment ?
 
     # Description of command in printable form.
     # But will return +nil+ if there is no description.
