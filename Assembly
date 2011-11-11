@@ -23,6 +23,7 @@ minitest:
   loadpath: lib
 
 dnote:
+  title: Developer's Notes
   labels: ~
   output: NOTES.rdoc
 
