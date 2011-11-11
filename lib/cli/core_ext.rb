@@ -11,5 +11,10 @@ class UnboundMethod
       end
     end
   end
+
+  #
+  def comment
+    Source.get_above_comment(*source_location)
+  end
 end
 

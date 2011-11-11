@@ -1,5 +1,6 @@
 module CLI
 
+  require 'cli/source'
   require 'cli/core_ext'
 
   # Encpsulates command help for deefining and displaying well formated help
@@ -155,9 +156,9 @@ module CLI
       if @description
         @description
       elsif @file
-        get_above_comment(@file, @line).join("\n")
-      elsif desc = method_descriptions['main']
-        desc
+        Source.get_above_comment(@file, @line)
+      elsif main = method_list.find{ |m| m.name == 'main' }
+        main.comment
       else
         nil
       end
@@ -186,29 +187,19 @@ module CLI
     # 
     # @return [String,NilClass] option list text
     def text_options
-      descriptions = option_descriptions
-
-      options  = {}
-
-      descriptions.each do |meth, desc|
-        case meth
-        when /^(.*?)[\!\=]$/
-          options[$1] = descriptions[meth]
+      option_list.each do |opt|
+        if @options.key?(opt.name)
+          opt.description = @options[opt.name]
         end
-      end
+      end    
 
-      options.update(@options)
-
-      options = options.sort{ |a,b| a[0] <=> b[0] }
+      max = option_list.map{ |opt| opt.usage.size }.max + 2
 
       s = []
       s << "OPTIONS"
-      options.each do |(name, desc)|
-        if name.size == 1
-          s << "   -%-15s %s" % [name, desc]
-        else
-          s << "  --%-15s %s" % [name, desc]
-        end
+      option_list.each do |opt|
+        mark = (opt.name.size == 1 ? ' -' : '--')
+        s << "  #{mark}%-#{max}s %s" % [opt.usage, opt.description]
       end
       s.join("\n")
     end
@@ -231,96 +222,74 @@ module CLI
     #end
 
     #
-    def option_descriptions
-      @option_descriptions ||= method_descriptions
+    def option_list
+      @option_list ||= (
+        method_list.map do |meth|
+          case meth.name
+          when /^(.*?)[\!\=]$/
+            Option.new(meth)
+          end
+        end.compact.sort
+      )
     end
 
   private
 
+    # Produce a list relavent methods.
     #
-    def method_descriptions
-      h = {}
-      c = method_chart(@cli_class)
-      c.each do |o,d|
-        h[o.to_s] = d.first if d
-      end
-      h
-    end
-
-    # Produce an index of method to method description.
-    #
-    def method_chart(cli_class)
-      chart = {}
-
+    def method_list
+      list      = []
       methods   = []
       stop_at   = cli_class.ancestors.index(CLI::Base) || -1
       ancestors = cli_class.ancestors[0...stop_at]
       ancestors.reverse_each do |a|
-        methods.concat(a.instance_methods(false))
+        a.instance_methods(false).each do |m|
+          list << cli_class.instance_method(m)
+        end
       end
-
-      methods.each do |m|
-        file, line = cli_class.instance_method(m).source_location
-        chart[m] = get_above_comment(file, line)
-      end
-
-      chart
+      list
     end
 
-    # Get comment from file searching up from given line number.
-    #
-    def get_above_comment(file, line)
-      text  = read(file)
-      index = line - 1
-      while index >= 0 && text[index] !~ /^\s*\#/
-        return nil if text[index] =~ /^\s*end/
-        index -= 1
+    # Encapsualtes a command line option.
+    class Option
+      def initialize(method)
+        @method = method
       end
-      rindex = index
-      while text[index] =~ /^\s*\#/
-        index -= 1
-      end
-      result = text[index..rindex]
-      result = result.map{ |s| s.strip }
-      result = result.reject{ |s| s[0,1] != '#' }
-      result = result.map{ |s| s.sub(/^#/,'').strip }
-      result = result.reject{ |s| s == "" }
-      result
-    end
 
-    # Get comment from file searching down from given line number.
-    #
-    # @param file [String] filename, should be full path
-    # @param line [Integer] line number in file
-    #
-    def get_following_comment(file, line)
-      text  = read(file)
-      index = line || 0
-      while text[index] !~ /^\s*\#/
-        return nil if text[index] =~ /^\s*(class|module)/
-        index += 1
+      def name
+        @method.name.to_s.chomp('!').chomp('=')
       end
-      rindex = index
-      while text[rindex] =~ /^\s*\#/
-        rindex += 1
+
+      def comment
+        @method.comment
       end
-      result = text[index..(rindex-2)]
-      result = result.map{ |s| s.strip }
-      result = result.reject{ |s| s[0,1] != '#' }
-      result = result.map{ |s| s.sub(/^#/,'').strip }
-      result.join("\n").strip
-    end
 
-    # Read and cache file.
-    #
-    # @param file [String] filename, should be full path
-    #
-    # @return [Array] file content in array of lines
-    def read(file)
-      @read ||= {}
-      @read[file] ||= File.readlines(file)
-    end
+      def description
+        @description ||= comment.split("\n").first
+      end
 
+      # Set description manually.
+      def description=(desc)
+        @description = desc
+      end
+
+      def parameter
+        param = @method.parameters.first
+        param.last if param
+      end
+
+      def usage
+        if parameter
+          "#{name}=#{parameter.to_s.upcase}"
+        else
+          "#{name}"
+        end
+      end
+
+      def <=>(other)
+        self.name <=> other.name
+      end
+    end
   end
 
 end
