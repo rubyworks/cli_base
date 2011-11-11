@@ -48,7 +48,7 @@ The help output,
 
 should be clearly laid out as follows:
 
-  $0 [options...] [subcommand]
+  Usage: $0 [options...] [subcommand]
 
   This does c1.
 
