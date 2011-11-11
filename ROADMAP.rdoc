@@ -1,8 +1,0 @@
-= ROADMAP
-
-* Seriously consider using method comments to
-extract help output rather than using #help method.
-This would be a much nicer API I think. This requires
-1.9's source_location. Unfortunately I know of no way
-to do the same for commands classes.
-
