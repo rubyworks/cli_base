@@ -1,6 +1,9 @@
-.rdoc
+.reap/digest
+.yardoc
 log
 pkg
 tmp
-site/docs
 work
+pages
+DEMO.rdoc
+

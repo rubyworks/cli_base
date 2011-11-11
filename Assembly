@@ -8,7 +8,7 @@ qed:
 qedoc:
   title : "CLI::Base Demonstrandum"
   files : demo
-  output: DEMONSTRANDUM.rdoc
+  output: DEMO.rdoc
 
 email:
   mailto:
