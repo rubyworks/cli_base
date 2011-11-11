@@ -39,8 +39,7 @@ module CLI
 
     # Get or set command banner.
     def banner(text=nil)
-      @banner ||= cli_class.config.header
-      @banner ||= File.basename($0) + ' [options...] [subcommand]'
+      @banner ||= "Usage: " + File.basename($0) + ' [options...] [subcommand]'
       @banner = text unless text.nil?
       @banner
     end
@@ -58,7 +57,6 @@ module CLI
 
     # Get or set command help footer.
     def footer(text=nil)
-      @footer ||= cli_class.config.footer
       @footer = text unless text.nil?
       @footer
     end
