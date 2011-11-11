@@ -1,0 +1,63 @@
+= Developer's Notes
+
+== TODO
+
+=== file://lib/cli/base.rb
+
+* TODO: Should #main be called #call instead? (83)
+* TODO: fix help (87)
+
+=== file://lib/cli/help.rb
+
+* TODO: Maybe default description should always come from `main`
+instead of the the class comment ? (147)
+
+=== file://lib/cli/parser.rb
+
+* TODO: This needs some thought concerning character spliting and arguments. (143)
+* TODO: Sort alphabetically? (174)
+
+=== file://lib/cli/utils.rb
+
+* TODO: Maybe #ask chould serve all purposes depending on degfault?
+e.g. `ask?("ok?", default=>true)`, would be same as `yes?("ok?")`. (10)
+
+=== file://work/command-underscore.rb
+
+* TODO: Support passing a string or *args, opts in place of ARGV. (79)
+* TODO: use clio/option (201)
+
+=== file://work/command.f3.rb
+
+* TODO:  (25)
+
+=== file://work/executable.rb
+
+* TODO: to_b if 'true' or 'false' ?
+if obj.respond_to?("#{x}=") (102)
+
+=== file://work/renditions/command.f3.rb
+
+* TODO:  (25)
+
+=== file://work/subcommand/lib/subcommand.rb
+
+* TODO: to_b if 'true' or 'false' ?
+obj.send("#{x}=",v)
+else
+obj.option_missing(x, v) # argv?
+end (274)
+* TODO: this needs some thought concerning character spliting and arguments. (311)
+* TODO: Sort alphabetically? (348)
+
+
+== FIXME
+
+=== file://work/command-facets.rb
+
+* FIXME: rename call to [] ? (234)
+
+=== file://work/renditions/command-facets.rb
+
+* FIXME: rename call to [] ? (234)
+

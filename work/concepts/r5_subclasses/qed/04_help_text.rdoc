@@ -1,0 +1,71 @@
+Require Executor library.
+
+  require 'executioner'
+
+Setup an example CLI subclass.
+
+  class MyCLI < Executioner
+
+    help "This does c1."
+
+    def c1
+    end
+
+    help "This is option --o1 for c1."
+
+    def c1__o1=(value)
+    end
+
+    help "This is option --o2 for c1."
+
+    def c1__o2=(value)
+    end
+
+    help "This does c2."
+
+    def c2
+    end
+
+    help "This is option --o1 for c2."
+
+    def c2__o1=(value)
+    end
+
+    help "This is option --o2 for c2."
+
+    def c2__o2=(bool)
+    end
+
+    help "This is global option -g."
+
+    def __g
+    end
+  end
+
+The help output,
+
+  MyCLI.to_s
+
+should be clearly laid out as follows:
+
+  qed
+
+  COMMANDS:
+
+    c1              This does c1.
+    c2              This does c2.
+
+  OPTIONS FOR c1:
+
+    --o1              This is option --o1 for c1.
+    --o2              This is option --o2 for c1.
+
+  OPTIONS FOR c2:
+
+    --o1              This is option --o1 for c2.
+    --o2              This is option --o2 for c2.
+
+  COMMON OPTIONS:
+
+     -g               This is global option -g.
+

@@ -14,9 +14,6 @@ description:
   can define a complete command line tool using nothing more
   than Ruby's own method definitions.
 
-authors:
-  - Thomas Sawyer
-
 resources:
   home: http://rubyworks.github.com/cli_base
   code: http://github.com/rubyworks/cli_base
@@ -25,14 +22,15 @@ resources:
 repositories:
   upstream: git://github.com/rubyworks/cli_base.git
 
-requires:
-  - qed (test)
+requirements:
+  - detroit (build)
+  - qed     (test)
 
 organization: RubyWorks
 
 authors: 
-  - Thomas Sawyer <transfire@gmail.com>
+  - trans <transfire@gmail.com>
 
-copyrights  :
-  - (c) 2008 Thomas Sawyer (BSD-2-Clause)
+copyrights:
+  - (c) 2008 Rubyworks (BSD-2-Clause)
 

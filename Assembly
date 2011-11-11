@@ -18,9 +18,9 @@ email:
 gem:
   active: true
 
-minitest:
-  tests: test/*.rb
-  loadpath: lib
+#ruth:
+#  tests: test/*.rb
+#  loadpath: lib
 
 dnote:
   title: Developer's Notes
