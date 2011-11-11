@@ -1,4 +1,7 @@
 ---
+github:
+  gh_pages: pages
+
 qed:
   files: demo
 
